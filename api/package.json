@@ -6,10 +6,16 @@
   "dependencies": {
     "express": "4.17.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "2.21.2"
+  },
   "scripts": {
     "test": "echo 'Error: no test specified' && exit 1",
-    "serve": "node app.js"
+    "serve": "npm run lint && node ./app.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "keywords": [
     "meli",

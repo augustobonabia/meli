@@ -10,6 +10,9 @@ Servidor desarrollado para el [Test Práctico - Frontend](https://www.dropbox.co
 
 * [Express] = 4.17.1 - Infraestructura web rápida, minimalista y flexible para Node.js
 
+##### Dependencias de desarrollo
+* [ESLint] = 7.3.0 - Encuentra y analiza problemas en tu código JavaScript
+
 License
 ----
 
@@ -20,3 +23,4 @@ MIT
    [Express]: <https://expressjs.com/>
    [Node.js]: <https://nodejs.org/en/>
    [npm]: <https://www.npmjs.com/>
+   [ESLint]: <https://eslint.org/>
