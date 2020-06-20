@@ -1,0 +1,24 @@
+{
+  "name": "meli-api",
+  "version": "1.0.0",
+  "description": "API para: Test Práctico - Frontend",
+  "main": "app.js",
+  "dependencies": {
+    "express": "4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "serve": "node app.js"
+  },
+  "keywords": [
+    "meli",
+    "api"
+  ],
+  "author": "Augusto Bonabía",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/augustobonabia/meli.git"
+  },
+  "license": "MIT"
+}
