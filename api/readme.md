@@ -8,10 +8,11 @@ Servidor desarrollado para el [Test Práctico - Frontend](https://www.dropbox.co
 * Requiere [npm] >=6.14.5
 ##### Dependencias
 
-* [Express] = 4.17.1 - Infraestructura web rápida, minimalista y flexible para Node.js
+* [Express] = 4.17.1 - Fast, unopinionated, minimalist web framework for Node.js
+* [Bunyan] = 1.8.12 - A simple and fast JSON logging library for node.js services
 
 ##### Dependencias de desarrollo
-* [ESLint] = 7.3.0 - Encuentra y analiza problemas en tu código JavaScript
+* [ESLint] = 7.3.0 - Find and fix problems in your JavaScript code
 
 License
 ----
@@ -24,3 +25,4 @@ MIT
    [Node.js]: <https://nodejs.org/en/>
    [npm]: <https://www.npmjs.com/>
    [ESLint]: <https://eslint.org/>
+   [Bunyan]: <https://github.com/trentm/node-bunyan#log-method-api>
