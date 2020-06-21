@@ -3,17 +3,13 @@
  */
 
 const express = require('express');
-const log = require('./logger');
+const middlewares = require('./middlewares');
 
 const app = express();
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-// Error handler middleware
-app.use((err, req, res, next) => {
-  log.error(err, req, res);
-  res.status(500).send('Oops, something went wrong!');
-  next();
-});
+app.use(middlewares.custom404Middleware);
+app.use(middlewares.customErrorHandlerMiddleware);
 
 module.exports = app;
