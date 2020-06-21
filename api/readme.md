@@ -6,23 +6,63 @@ Servidor desarrollado para el [Test Práctico - Frontend](https://www.dropbox.co
 
 * Requiere [Node.js] >=12.18.1
 * Requiere [npm] >=6.14.5
+* Requiere [Phyton] >= 3.5
 ##### Dependencias
 
-* [Express] = 4.17.1 - Fast, unopinionated, minimalist web framework for Node.js
-* [Bunyan] = 1.8.12 - A simple and fast JSON logging library for node.js services
+* [express] - Fast, unopinionated, minimalist web framework for Node.js
+* [bunyan] - A simple and fast JSON logging library for node.js services
 
 ##### Dependencias de desarrollo
-* [ESLint] = 7.3.0 - Find and fix problems in your JavaScript code
+* [eslint] - Find and fix problems in your JavaScript code
+* [eslint-config-airbnb-base] - Provides Airbnb's base JS .eslintrc (without React plugins) as an extensible shared config
+* [eslint-plugin-import] - Intends to support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names. 
 
-License
+##### Instalación
+```
+$ npm install
+```
+
+## Uso
+##### Producción
+```
+$ npm run serve
+```
+##### Desarrollo
+Para levantar la app en modo desarrollo:
+```
+$ npm run debug
+```
+Para ejecutar los test:
+```
+$ npm run test
+```
+Para conocer los errores detectados por ESLint
+```
+$ npm run lint
+```
+Para intentar corregir automáticamente los errores detectados por ESLint
+```
+$ npm run lint-fix
+```
+
+
+
+
+
+
+Licencia
 ----
 
 MIT
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
-   [Express]: <https://expressjs.com/>
+   [Phyton]: <https://www.python.org/>
    [Node.js]: <https://nodejs.org/en/>
    [npm]: <https://www.npmjs.com/>
-   [ESLint]: <https://eslint.org/>
-   [Bunyan]: <https://github.com/trentm/node-bunyan#log-method-api>
+   
+   [express]: <https://expressjs.com/>
+   [eslint]: <https://eslint.org/>
+   [bunyan]: <https://github.com/trentm/node-bunyan#log-method-api>
+   [eslint-config-airbnb-base]: <https://www.npmjs.com/package/eslint-config-airbnb-base>
+   [eslint-plugin-import]: <https://www.npmjs.com/package/eslint-plugin-import>

@@ -13,9 +13,9 @@
     "eslint-plugin-import": "2.21.2"
   },
   "scripts": {
+    "serve": "node ./app.js | bunyan",
+    "debug": "npm run lint && node ./app.js | bunyan",
     "test": "echo 'Error: no test specified' && exit 1",
-    "serve": "npm run lint && node ./app.js | bunyan",
-    "debug": "node ./app.js | bunyan",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },
@@ -29,5 +29,5 @@
     "url": "git://github.com/augustobonabia/meli.git"
   },
   "license": "MIT",
-  "homepage": "https://github.com/augustobonabia/meli#readme"
+  "homepage": "https://github.com/augustobonabia/meli/tree/master/api#readme"
 }
