@@ -43,7 +43,7 @@ Write-Host -NoNewline "API: Lint... "
 Check-Result
 
 Write-Host -NoNewline "API: Test... "
-& npm run test >> $OutputFile
+& npm run test:once >> $OutputFile
 Check-Result
 
 Exit-Test
