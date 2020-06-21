@@ -10,7 +10,17 @@ function customErrorHandlerMiddleware(err, req, res, next) {
   next();
 }
 
+function setAuthor(req, res, next) {
+  res.author = {
+    name: 'Augusto',
+    lastname: 'Bonabía',
+  };
+
+  next();
+}
+
 module.exports = {
   custom404Middleware,
   customErrorHandlerMiddleware,
+  setAuthor,
 };

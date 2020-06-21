@@ -3,23 +3,43 @@ const app = require('./app');
 
 const request = supertest(app);
 
-test('El response a un GET del directorio raiz debe devolver "Hello World!"', async (done) => {
-  const response = await request.get('/');
+describe('Response errors', () => {
+  test('Un request a un endopoint que no existe debe devolver un error 404', async (done) => {
+    const randomPath = '/random';
+    const getResponse = await request.get(randomPath);
 
-  expect(response.status).toBe(200);
-  expect(response.text).toBe('Hello World!');
-  done();
+    expect(getResponse.status).toBe(404);
+    expect(getResponse.text).toBe(`Oops, cannot GET: "${randomPath}"`);
+
+    const postResponse = await request.post(randomPath).send({});
+    expect(postResponse.status).toBe(404);
+    expect(postResponse.text).toBe(`Oops, cannot POST: "${randomPath}"`);
+    done();
+  });
+
+  test.todo('Un error interno del servidor debe devolver un error 500');
 });
 
-test('Un request a un endopoint que no existe debe devolver un error 404', async (done) => {
-  const randomPath = '/random';
-  const getResponse = await request.get(randomPath);
+describe('Se debe agregar la firma a los métodos', () => {
+  const testAuthor = (response) => {
+    expect(response.status).toBe(200);
+    expect(response.body.author).toEqual({
+      name: 'Augusto',
+      lastname: 'Bonabía',
+    });
+  };
 
-  expect(getResponse.status).toBe(404);
-  expect(getResponse.text).toBe(`Oops, cannot GET: "${randomPath}"`);
+  test('GET: /items"', async (done) => {
+    const response = await request.get('/items');
 
-  const postResponse = await request.post(randomPath).send({});
-  expect(postResponse.status).toBe(404);
-  expect(postResponse.text).toBe(`Oops, cannot POST: "${randomPath}"`);
-  done();
+    testAuthor(response);
+    done();
+  });
+
+  test('GET: /items/:id"', async (done) => {
+    const response = await request.get('/items/854');
+
+    testAuthor(response);
+    done();
+  });
 });
