@@ -15,7 +15,9 @@ Servidor desarrollado para el [Test Práctico - Frontend](https://www.dropbox.co
 ##### Dependencias de desarrollo
 * [eslint] - Find and fix problems in your JavaScript code
 * [eslint-config-airbnb-base] - Provides Airbnb's base JS .eslintrc (without React plugins) as an extensible shared config
-* [eslint-plugin-import] - Intends to support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names. 
+* [eslint-plugin-import] - Intends to support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names.
+* [jest] - A delightful JavaScript Testing Framework with a focus on simplicity.
+* [eslint-plugin-jest] - A plugin that integrate jest to eslint
 
 ##### Instalación
 ```
@@ -66,3 +68,5 @@ MIT
    [bunyan]: <https://github.com/trentm/node-bunyan#log-method-api>
    [eslint-config-airbnb-base]: <https://www.npmjs.com/package/eslint-config-airbnb-base>
    [eslint-plugin-import]: <https://www.npmjs.com/package/eslint-plugin-import>
+   [eslint-plugin-jest]: <https://www.npmjs.com/package/eslint-plugin-jest>
+   [jest]: <https://jestjs.io/en/>

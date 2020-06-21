@@ -5,16 +5,18 @@
   "main": "app.js",
   "dependencies": {
     "bunyan": "1.8.12",
+    "eslint-plugin-jest": "23.15.0",
     "express": "4.17.1"
   },
   "devDependencies": {
     "eslint": "7.2.0",
     "eslint-config-airbnb-base": "14.2.0",
-    "eslint-plugin-import": "2.21.2"
+    "eslint-plugin-import": "2.21.2",
+    "jest": "26.0.1"
   },
   "scripts": {
-    "start": "node ./app.js | bunyan",
-    "test": "npm run lint && echo 'Error: no test specified' && exit 1",
+    "start": "node ./src/app.js | bunyan",
+    "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
