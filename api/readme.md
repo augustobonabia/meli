@@ -25,16 +25,16 @@ $ npm install
 ## Uso
 ##### Producción
 ```
-$ npm run serve
+TODO
 ```
 ##### Desarrollo
 Para levantar la app en modo desarrollo:
 ```
-$ npm run debug
+$ npm start
 ```
 Para ejecutar los test:
 ```
-$ npm run test
+$ npm test
 ```
 Para conocer los errores detectados por ESLint
 ```
@@ -42,7 +42,7 @@ $ npm run lint
 ```
 Para intentar corregir automáticamente los errores detectados por ESLint
 ```
-$ npm run lint-fix
+$ npm run lint:fix
 ```
 
 

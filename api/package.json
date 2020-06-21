@@ -13,11 +13,10 @@
     "eslint-plugin-import": "2.21.2"
   },
   "scripts": {
-    "serve": "node ./app.js | bunyan",
-    "debug": "npm run lint && node ./app.js | bunyan",
-    "test": "echo 'Error: no test specified' && exit 1",
+    "start": "node ./app.js | bunyan",
+    "test": "npm run lint && echo 'Error: no test specified' && exit 1",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [
     "meli",
