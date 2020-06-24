@@ -18,7 +18,9 @@ Servidor desarrollado para el [Test Práctico - Frontend](https://www.dropbox.co
 * [eslint-plugin-import] - Intends to support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names.
 * [jest] - A delightful JavaScript Testing Framework with a focus on simplicity.
 * [eslint-plugin-jest] - A plugin that integrates jest to eslint.
-* [supertest] - provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
+* [supertest] - Provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
+* [axios] - Promise based HTTP client for the browser and node.js.
+* [nodemon] - Automatically restarts the node application when file changes in the directory are detected.
 
 ##### Instalación
 ```
@@ -72,3 +74,5 @@ MIT
    [eslint-plugin-jest]: <https://www.npmjs.com/package/eslint-plugin-jest>
    [jest]: <https://jestjs.io/en/>
    [supertest]: <https://www.npmjs.com/package/supertest>
+   [axios]: <https://www.npmjs.com/package/axios>
+   [nodemon]: <https://www.npmjs.com/package/nodemon>
