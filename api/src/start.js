@@ -3,8 +3,8 @@
  */
 
 const log = require('./logger');
-const app = require('./app');
+const app = require('./core/app');
+const env = require('./environment');
 
-const port = 3000;
-
-app.listen(port, () => log.info(`Listening at http://localhost:${port}`));
+log.info(`Environment: ${process.env.NODE_ENV}`);
+app.listen(env.port, () => log.info(`Listening at http://localhost:${env.port}`));

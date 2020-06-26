@@ -1,7 +1,7 @@
 const bunyan = require('bunyan');
+const env = require('./environment');
 
-const log = bunyan.createLogger({
+module.exports = bunyan.createLogger({
   name: 'Meli API',
+  level: env.logLevel,
 });
-
-module.exports = log;

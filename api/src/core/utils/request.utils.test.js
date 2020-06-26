@@ -1,7 +1,9 @@
-const utils = require('./utils');
+const utils = require('./request.utils');
+
+jest.unmock('./request-utils');
 
 describe('Utils', () => {
-  test('si la firma existe, sendOk debe agregar la firma', async (done) => {
+  test.only('si la firma existe, sendOk debe agregar la firma', async (done) => {
     const res = {
       author: {
         name: 'Augusto',
@@ -25,5 +27,19 @@ describe('Utils', () => {
     };
 
     utils.sendOk(res, {});
+  });
+
+  test('requestWrapper debe llamar a sendOk con el body que arma requestHandler', async (done) => {
+    const bodyMock = {
+      id: 'MLA123',
+      name: 'Mesa ratona',
+    };
+
+    utils.sendOk = jest.fn((res, body) => {
+      expect(body).toBe(bodyMock);
+      done();
+    });
+
+    utils.requestWrapper(null, null, null, () => bodyMock);
   });
 });

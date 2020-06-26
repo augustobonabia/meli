@@ -6,21 +6,22 @@
   "dependencies": {
     "axios": "0.19.2",
     "bunyan": "1.8.12",
-    "eslint-plugin-jest": "23.15.0",
     "express": "4.17.1"
   },
   "devDependencies": {
     "eslint": "7.2.0",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-jest": "23.15.0",  
     "jest": "26.0.1",
     "nodemon": "2.0.4",
     "supertest": "4.0.2"
   },
   "scripts": {
-    "start": "nodemon ./src/start.js | bunyan",
+    "serve": "set NODE_ENV=production& node ./src/start.js | bunyan",
+    "start": "set NODE_ENV=development& nodemon ./src/start.js | bunyan",
     "test:once": "jest",
-    "test": "jest --watch",
+    "test": "set NODE_ENV=test& jest --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

@@ -29,15 +29,16 @@ $ npm install
 
 ## Uso
 ##### Producción
+Para levantar la app en modo productivo:
 ```
-TODO
+$ npm serve
 ```
 ##### Desarrollo
 Para levantar la app en modo desarrollo:
 ```
 $ npm start
 ```
-Para ejecutar los test:
+Para correr los test:
 ```
 $ npm test
 ```

@@ -3,15 +3,14 @@
  */
 
 const express = require('express');
+const items = require('./items.router');
 const middlewares = require('./middlewares');
-const utils = require('./utils');
 
 const app = express();
 
 app.use(middlewares.setAuthor);
 
-app.get('/items', (req, res) => utils.sendOk(res, { }));
-app.get('/items/:id', (req, res) => utils.sendOk(res, { }));
+app.use('/items', items);
 
 app.use(middlewares.custom404Middleware);
 app.use(middlewares.customErrorHandlerMiddleware);
