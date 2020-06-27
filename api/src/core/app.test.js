@@ -1,19 +1,17 @@
 const supertest = require('supertest');
-const axios = require('axios');
 const app = require('./app');
+const sourceApiClient = require('./source-api-client');
 
-jest.mock('axios');
+jest.mock('./source-api-client', () => ({
+  get: () => ({}),
+}));
 jest.mock('./utils/items.utils');
 
 const request = supertest(app);
 
-describe('Se debe agregar la firma a los métodos', () => {
+describe('Se debe agregar la firma a las respuestas de los endpoints', () => {
   beforeEach(() => {
-    axios.get.mockResolvedValue({ data: {} });
-  });
-
-  afterAll(() => {
-    jest.clearAllMocks();
+    jest.restoreAllMocks();
   });
 
   const testAuthor = (response) => {
@@ -58,5 +56,13 @@ describe('Response errors', () => {
     done();
   });
 
-  test.todo('Un error interno del servidor debe devolver un error 500');
+  test('Un error interno del servidor debe devolver un error 500', async () => {
+    sourceApiClient.get = jest.fn().mockImplementation(() => {
+      throw new Error('random error');
+    });
+
+    const response = await request.get('/items');
+    expect(response.status).toBe(500);
+    expect(response.text).toBe('Oops, something went wrong!');
+  });
 });

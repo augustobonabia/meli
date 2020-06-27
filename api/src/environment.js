@@ -17,7 +17,7 @@ const testSettings = {
     name: 'Cosme',
     lastname: 'Fulanito',
   },
-  logLevel: 'error',
+  logLevel: 'fatal',
   logRequestObjsOnError: false,
   port: null,
   signResponse: true,
