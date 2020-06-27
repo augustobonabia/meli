@@ -12,7 +12,7 @@ function buildSearchResponseItemPrice(sourceResult, currencies) {
       .find((currency) => currency.id === sourceResult.currency_id)
       .symbol,
     amount,
-    decimals: Math.ceil(unroundedPriceDecimals), // Se redondean hacia arriba los decimales
+    decimals: Math.round(unroundedPriceDecimals),
   };
 }
 
@@ -26,7 +26,7 @@ function buildSearchResponseItems(sourceResults, currencies) {
   return sourceResults.map((sourceResult) => ({
     id: sourceResult.id,
     title: sourceResult.title,
-    price: buildSearchResponseItemPrice(sourceResult, currencies),
+    price: module.exports.buildSearchResponseItemPrice(sourceResult, currencies),
     picture: sourceResult.thumbnail,
     condition: sourceResult.condition,
     free_shipping: sourceResult.shipping.free_shipping,

@@ -1,9 +1,11 @@
-const utils = require('./request.utils');
+const requestUtils = require('./request.utils');
 
-jest.unmock('./request-utils');
+describe.only('Utils', () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
 
-describe('Utils', () => {
-  test.only('si la firma existe, sendOk debe agregar la firma', async (done) => {
+  test('si la firma existe, sendOk debe agregar la firma al response', async (done) => {
     const res = {
       author: {
         name: 'Augusto',
@@ -15,10 +17,10 @@ describe('Utils', () => {
       },
     };
 
-    utils.sendOk(res, { code: 'item_23' });
+    requestUtils.sendOk(res, {});
   });
 
-  test('si la firma no existe, sendOk debe agregar nada', async (done) => {
+  test('si la firma no existe, sendOk no debe agregar nada al response', async (done) => {
     const res = {
       send: (response) => {
         expect(response.author).toBeUndefined();
@@ -26,7 +28,7 @@ describe('Utils', () => {
       },
     };
 
-    utils.sendOk(res, {});
+    requestUtils.sendOk(res, {});
   });
 
   test('requestWrapper debe llamar a sendOk con el body que arma requestHandler', async (done) => {
@@ -35,11 +37,11 @@ describe('Utils', () => {
       name: 'Mesa ratona',
     };
 
-    utils.sendOk = jest.fn((res, body) => {
+    jest.spyOn(requestUtils, 'sendOk').mockImplementation((res, body) => {
       expect(body).toBe(bodyMock);
       done();
     });
 
-    utils.requestWrapper(null, null, null, () => bodyMock);
+    requestUtils.requestWrapper({}, null, null, () => bodyMock);
   });
 });

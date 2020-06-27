@@ -13,11 +13,14 @@ const devSettings = {
 };
 
 const testSettings = {
-  author: null,
-  logLevel: 'fatal',
+  author: {
+    name: 'Cosme',
+    lastname: 'Fulanito',
+  },
+  logLevel: 'error',
   logRequestObjsOnError: false,
   port: null,
-  signResponse: false,
+  signResponse: true,
   sourceApiBaseUrl: '',
 };
 

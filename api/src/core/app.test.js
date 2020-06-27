@@ -1,7 +1,48 @@
 const supertest = require('supertest');
+const axios = require('axios');
 const app = require('./app');
 
+jest.mock('axios');
+jest.mock('./utils/items.utils');
+
 const request = supertest(app);
+
+describe('Se debe agregar la firma a los métodos', () => {
+  beforeEach(() => {
+    axios.get.mockResolvedValue({ data: {} });
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+
+  const testAuthor = (response) => {
+    expect(response.status).toBe(200);
+    expect(response.body.author).toEqual({
+      name: 'Cosme',
+      lastname: 'Fulanito',
+    });
+  };
+
+  test('GET: /items"', async (done) => {
+    jest.mock('./utils/items.utils', () => ({
+      buildSearchResponseItems: () => [],
+      buildSearchResponseCategories: async () => [],
+    }));
+
+    const response = await request.get('/items');
+
+    testAuthor(response);
+    done();
+  });
+
+  test('GET: /items/:id"', async (done) => {
+    const response = await request.get('/items/854');
+
+    testAuthor(response);
+    done();
+  });
+});
 
 describe('Response errors', () => {
   test('Un request a un endopoint que no existe debe devolver un error 404', async (done) => {
@@ -18,28 +59,4 @@ describe('Response errors', () => {
   });
 
   test.todo('Un error interno del servidor debe devolver un error 500');
-});
-
-describe('Se debe agregar la firma a los métodos', () => {
-  const testAuthor = (response) => {
-    expect(response.status).toBe(200);
-    expect(response.body.author).toEqual({
-      name: 'Augusto',
-      lastname: 'Bonabía',
-    });
-  };
-
-  test('GET: /items"', async (done) => {
-    const response = await request.get('/items');
-
-    testAuthor(response);
-    done();
-  });
-
-  test('GET: /items/:id"', async (done) => {
-    const response = await request.get('/items/854');
-
-    testAuthor(response);
-    done();
-  });
 });

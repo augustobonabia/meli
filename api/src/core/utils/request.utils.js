@@ -45,7 +45,7 @@ async function requestWrapper(req, res, next, requestHandler) {
     log.info(reqLogObj, 'Request received');
 
     const body = await requestHandler(req);
-    sendOk(res, body);
+    module.exports.sendOk(res, body);
 
     log.info(reqLogObj, 'Response OK');
   } catch (e) {
