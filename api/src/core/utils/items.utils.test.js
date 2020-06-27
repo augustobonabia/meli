@@ -159,7 +159,7 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseCategor
   });
 
   test('debe  devolver un array de nombres de categorías cuando no hay un filtro aplicado y hay filtros de categorías para aplicar', async () => {
-    sourceApiClient.get.mockImplementation(async (path) => {
+    sourceApiClient.get.mockImplementation((path) => {
       expect(path).toContain('MLA1763');
 
       return { path_from_root: pathFromRootMock };

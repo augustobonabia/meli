@@ -27,7 +27,7 @@ describe('Se debe agregar la firma a los métodos', () => {
   test('GET: /items"', async (done) => {
     jest.mock('./utils/items.utils', () => ({
       buildSearchResponseItems: () => [],
-      buildSearchResponseCategories: async () => [],
+      buildSearchResponseCategories: () => [],
     }));
 
     const response = await request.get('/items');
@@ -36,7 +36,7 @@ describe('Se debe agregar la firma a los métodos', () => {
     done();
   });
 
-  test('GET: /items/:id"', async (done) => {
+  test.skip('GET: /items/:id"', async (done) => {
     const response = await request.get('/items/854');
 
     testAuthor(response);

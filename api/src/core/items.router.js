@@ -21,13 +21,13 @@ async function buildItemsSearchResponse(req) {
   };
 }
 
-async function buildItemResponse() {
-  return {};
+function buildItemResponse() {
+  throw new Error('Not implemented');
 }
 
 // Endpoints
 
-router.get('', async (req, res, next) => {
+router.get('', (req, res, next) => {
   requestUtils.requestWrapper(req, res, next, buildItemsSearchResponse);
 });
 
