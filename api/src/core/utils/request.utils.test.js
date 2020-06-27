@@ -5,7 +5,7 @@ describe.only('Utils', () => {
     jest.restoreAllMocks();
   });
 
-  test('si la firma existe, sendOk debe agregar la firma al response', async (done) => {
+  test(`si la firma existe, ${requestUtils.sendOk} debe agregar la firma al response`, async (done) => {
     const res = {
       author: {
         name: 'Augusto',
@@ -20,7 +20,7 @@ describe.only('Utils', () => {
     requestUtils.sendOk(res, {});
   });
 
-  test('si la firma no existe, sendOk no debe agregar nada al response', async (done) => {
+  test(`si la firma no existe, ${requestUtils.sendOk} no debe agregar nada al response`, async (done) => {
     const res = {
       send: (response) => {
         expect(response.author).toBeUndefined();
@@ -31,7 +31,7 @@ describe.only('Utils', () => {
     requestUtils.sendOk(res, {});
   });
 
-  test('requestWrapper debe llamar a sendOk con el body que arma requestHandler', async (done) => {
+  test(`requestWrapper debe llamar a ${requestUtils.sendOk} con el body que arma requestHandler`, async (done) => {
     const bodyMock = {
       id: 'MLA123',
       name: 'Mesa ratona',

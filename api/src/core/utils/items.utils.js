@@ -1,7 +1,4 @@
-const axios = require('axios');
-const env = require('../../environment');
-
-const { sourceApiBaseUrl } = env;
+const sourceApiClient = require('../source-api-client');
 
 function buildSearchResponseItemPrice(sourceResult, currencies) {
   const amount = Math.trunc(sourceResult.price);
@@ -42,9 +39,16 @@ function buildSearchResponseItems(sourceResults, currencies) {
  *          raíz y el último elemento es la categoría que más resultados obtuvo.
  */
 async function buildSearchResponseCategories(searchResults) {
+  // Si no hay resultados en la búsqueda tampoco hay un path de categorías
+  if (!searchResults.results.length) {
+    return [];
+  }
+
   const appliedCategoryFilter = searchResults.filters.find((filter) => filter.id === 'category');
   let categoryPath = null;
 
+  // Si hay un filtro de categoría aplicado se obtiene su path.
+  // Si no hay un filtro aplicado, se busca qué filtro tiene más resultados y se obtiene su path.
   if (appliedCategoryFilter) {
     categoryPath = appliedCategoryFilter.values[0].path_from_root;
   } else {
@@ -57,10 +61,9 @@ async function buildSearchResponseCategories(searchResults) {
         }
 
         return prev;
-      }, 0).id;
+      }, { results: 0 }).id;
 
-      const category = (await axios.get(`${sourceApiBaseUrl}/categories/${bestCategoryId}`)).data;
-      categoryPath = category.path_from_root;
+      categoryPath = (await sourceApiClient.get(`categories/${bestCategoryId}?attributes=path_from_root`)).path_from_root;
     }
   }
 

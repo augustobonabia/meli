@@ -3,19 +3,17 @@
  */
 
 const express = require('express');
-const axios = require('axios');
+const sourceApiClient = require('./source-api-client');
 const itemsUtils = require('./utils/items.utils');
 const requestUtils = require('./utils/request.utils');
-const env = require('../environment');
 
-const { sourceApiBaseUrl } = env;
 const router = express.Router();
 
 // Response builders
 
 async function buildItemsSearchResponse(req) {
-  const searchResults = (await axios.get(`${sourceApiBaseUrl}/sites/MLA/search?q=${req.query.q}&attributes=filters,available_filters,results`)).data;
-  const { currencies } = (await axios.get(`${sourceApiBaseUrl}/sites/MLA`)).data;
+  const searchResults = await sourceApiClient.get(`sites/MLA/search?q=${req.query.q}&attributes=filters,available_filters,results`);
+  const { currencies } = await sourceApiClient.get('sites/MLA?attributes=currencies');
 
   return {
     categories: await itemsUtils.buildSearchResponseCategories(searchResults),

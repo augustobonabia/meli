@@ -1,4 +1,7 @@
 const itemsUtils = require('./items.utils');
+const sourceApiClient = require('../source-api-client');
+
+jest.mock('../source-api-client');
 
 const currencies = [
   {
@@ -10,6 +13,26 @@ const currencies = [
     symbol: '$',
   },
 ];
+
+const results = [{
+  id: 'MLA834484947',
+  title: 'Mochila Notebook Case Logic Query 29 L Azul Y Verde -cuotas',
+  shipping: {
+    free_shipping: true,
+  },
+  condition: 'new',
+  thumbnail: 'http://mla-s2-p.mlstatic.com/761434-MLA40103186494_122019-I.jpg',
+  category_id: 'MLA16543',
+}, {
+  id: 'MLA829880187',
+  title: 'Mesa de cuatro patas',
+  shipping: {
+    free_shipping: false,
+  },
+  condition: 'used',
+  thumbnail: 'http://mla-s2-p.mlstatic.com/761434-MLA40103186494_122019-I.jpg',
+  category_id: 'MLA16543',
+}];
 
 describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItemPrice.name}`, () => {
   test('genera la cantidad correcta de monto y "decimales" de un precio con un decimal', () => {
@@ -68,26 +91,6 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItemPri
 describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItems.name}`, () => {
   test('una lista con varios resultados debe construir los items en el formato correcto', () => {
     const priceBuilderSpy = jest.spyOn(itemsUtils, 'buildSearchResponseItemPrice').mockReturnValue(null);
-    const results = [{
-      id: 'MLA834484947',
-      title: 'Mochila Notebook Case Logic Query 29 L Azul Y Verde -cuotas',
-      shipping: {
-        free_shipping: true,
-      },
-      condition: 'new',
-      thumbnail: 'http://mla-s2-p.mlstatic.com/761434-MLA40103186494_122019-I.jpg',
-      category_id: 'MLA16543',
-    }, {
-      id: 'MLA829880187',
-      title: 'Mesa de cuatro patas',
-      shipping: {
-        free_shipping: false,
-      },
-      condition: 'used',
-      thumbnail: 'http://mla-s2-p.mlstatic.com/761434-MLA40103186494_122019-I.jpg',
-      category_id: 'MLA16543',
-    }];
-
     const items = itemsUtils.buildSearchResponseItems(results, currencies);
 
     expect(items[0]).toStrictEqual({
@@ -117,9 +120,86 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItems.n
 });
 
 describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseCategories.name}`, () => {
-  test.todo('debe devolver un array de nombres de categorías cuando hay un filtro aplicado');
+  const pathFromRootMock = [
+    {
+      id: 'MLA1743',
+      name: 'Autos, Motos y Otros',
+    },
+    {
+      id: 'MLA1763',
+      name: 'Motos',
+    },
+  ];
 
-  test.todo('debe  devolver un array de nombres de categorías cuando no hay un filtro aplicado y hay filtros de categorías para aplicar');
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
 
-  test.todo('no debe fallar si en la API fuente no se encontraron resultados');
+  test('debe devolver un array de nombres de categorías cuando hay un filtro aplicado', async () => {
+    const searchResults = {
+      results,
+      filters: [{
+        id: 'official_store',
+      },
+      {
+        id: 'category',
+        name: 'Categories',
+        type: 'text',
+        values: [{
+          id: 'MLA1763',
+          name: 'Motos',
+          path_from_root: pathFromRootMock,
+        }, {
+          id: 'state',
+        }],
+      }],
+    };
+
+    expect(await itemsUtils.buildSearchResponseCategories(searchResults)).toStrictEqual(['Autos, Motos y Otros', 'Motos']);
+  });
+
+  test('debe  devolver un array de nombres de categorías cuando no hay un filtro aplicado y hay filtros de categorías para aplicar', async () => {
+    sourceApiClient.get.mockImplementation(async (path) => {
+      expect(path).toContain('MLA1763');
+
+      return { path_from_root: pathFromRootMock };
+    });
+
+    const searchResults = {
+      results,
+      filters: [],
+      available_filters: [{
+        id: 'state',
+      },
+      {
+        id: 'category',
+        name: 'Categories',
+        type: 'text',
+        values: [{
+          id: 'MLA1763',
+          name: 'Motos',
+          results: 648885,
+        },
+        {
+          id: 'MLA1574',
+          name: 'Hogar, Muebles y Jardín',
+          results: 20017,
+        },
+        {
+          id: 'MLA1174',
+          name: 'Música',
+          results: 326894,
+        }],
+      },
+      {
+        id: 'official_store',
+      }],
+    };
+
+    expect(await itemsUtils.buildSearchResponseCategories(searchResults)).toStrictEqual(['Autos, Motos y Otros', 'Motos']);
+  });
+
+  test('debe retornar un array vacío si no se encontraron resultados', async () => {
+    expect(await itemsUtils.buildSearchResponseCategories({ results: [] })).toStrictEqual([]);
+  });
 });
