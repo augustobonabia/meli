@@ -1,0 +1,30 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "ignorePatterns": ["dist/*"],
+    "rules": {
+        "linebreak-style": [
+            2,
+            "windows"
+        ],
+        "require-await": [
+            2
+        ]
+    }
+}

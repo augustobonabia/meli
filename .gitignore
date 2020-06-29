@@ -1,2 +1,4 @@
 /api/node_modules/*
 /code_health_results.txt
+/front-end/node_modules/*
+/front-end/dist/*
