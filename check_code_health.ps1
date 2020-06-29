@@ -30,8 +30,9 @@ function Exit-Test {
 Write-Host ""
 
 $ApiDir = Join-Path $CurrentDir api
+$FrontendDir = Join-Path $CurrentDir front-end
 
-# Check API health"
+# Check API health
 Set-Location -Path $ApiDir
 
 Write-Host -NoNewline "API: Restore (npm)... "
@@ -44,6 +45,21 @@ Check-Result
 
 Write-Host -NoNewline "API: Test... "
 & npm run test:once >> $OutputFile
+Check-Result
+
+# Check Frontend health
+Set-Location -Path $FrontendDir
+
+Write-Host -NoNewline "Frontend: Restore (npm)... "
+npm install --silent --no-progress >> $OutputFile
+Check-Result
+
+Write-Host -NoNewline "API: Lint... "
+& npm run lint >> $OutputFile
+Check-Result
+
+Write-Host -NoNewline "API: Build... "
+& npm run build >> $OutputFile
 Check-Result
 
 Exit-Test
