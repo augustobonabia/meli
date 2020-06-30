@@ -1,7 +1,51 @@
-html, body {
-  color: #000;
-  background-color: #FFF;
+@import "variables.scss";
+@import "mixins.scss";
+
+html,
+body {
+  color: $primary-text-color;
+  background-color: $page-background-color;
   margin: 0;
   padding: 0;
-  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+  font-family: Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+}
+
+input,
+input:focus,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border: none;
+  color: $remarked-text-color;
+  font-size: $input-font-size;
+  padding: $input-padding;
+  outline: none;
+  background-color: $container-background-color;
+  box-shadow: 0 0 0px 1000px $container-background-color inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px $container-background-color inset !important;
+}
+
+::placeholder {
+  color: $secondary-text-color;
+  opacity: 1;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+div.app {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  div.page-container {
+    @include aligned-grow-flex;
+    margin: 0 $small-space;
+  }
 }

@@ -1,0 +1,44 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.header {
+  @include aligned-grow-flex;
+  background-color: $app-color;
+  padding: $tiny-space 0;
+
+  div.logo-container {
+    @include aligned-flex;
+    margin-right: $small-space;
+
+    img.logo {
+      cursor: pointer;
+      height: $input-font-size + 2 * $input-padding;
+    }
+  }
+
+  form.search-form {
+    display: inline-flex;
+    max-width: 1200px;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    justify-content: center;
+
+    input[type="text"].search-box {
+      flex-grow: 1;
+      border-radius: $border-radious 0 0 $border-radious;
+    }
+
+    button.search-button {
+      padding: 0 10px;
+      display: flex;
+      background-color: $page-background-color;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 $border-radious $border-radious 0;
+
+      img {
+        height: $input-font-size * 0.75;
+      }
+    }
+  }
+}

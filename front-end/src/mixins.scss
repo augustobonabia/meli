@@ -1,0 +1,10 @@
+@mixin aligned-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin aligned-grow-flex {
+  @include aligned-flex;
+  flex-grow: 1;
+}
