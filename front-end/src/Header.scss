@@ -10,9 +10,12 @@
     @include aligned-flex;
     margin-right: $small-space;
 
-    img.logo {
-      cursor: pointer;
-      height: $input-font-size + 2 * $input-padding;
+    a {
+      @include aligned-flex;
+      img.logo {
+        cursor: pointer;
+        height: $input-font-size + 2 * $input-padding;
+      }
     }
   }
 

@@ -36,6 +36,7 @@ const config = {
     publicPath: '/dist/',
     filename: 'bundle.js',
   },
+  devtool: 'source-map',
 };
 
 module.exports = (env, argv) => {
@@ -49,6 +50,7 @@ module.exports = (env, argv) => {
         port: 3001,
         publicPath: 'http://localhost:3001/dist/',
         hotOnly: true,
+        historyApiFallback: true,
       },
       plugins: [new webpack.HotModuleReplacementPlugin()],
     };
