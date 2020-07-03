@@ -1,5 +1,5 @@
-@import "variables.scss";
-@import "mixins.scss";
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
 
 .header {
   @include aligned-grow-flex;

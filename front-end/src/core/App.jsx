@@ -1,8 +1,8 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Switch, Route } from 'react-router-dom';
-import './App.scss';
-import Header from './Header';
+import './app.scss';
+import Header from '../header/Header';
 import appRoutes from './app-routes';
 
 function App() {

@@ -5,7 +5,7 @@ import {
   useRouteMatch,
   useHistory,
 } from 'react-router-dom';
-import appRoutes from './app-routes';
+import appRoutes from '../core/app-routes';
 
 function SearchBar() {
   const location = useLocation();
