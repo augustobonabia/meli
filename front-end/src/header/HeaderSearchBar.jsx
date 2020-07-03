@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import appRoutes from '../core/app-routes';
 
-function SearchBar() {
+function HeaderSearchBar() {
   const location = useLocation();
   const history = useHistory();
   const query = (new URLSearchParams(location.search));
@@ -76,4 +76,4 @@ function SearchBar() {
   );
 }
 
-export default withRouter(SearchBar);
+export default withRouter(HeaderSearchBar);

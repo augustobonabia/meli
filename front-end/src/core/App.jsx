@@ -2,7 +2,7 @@ import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Switch, Route } from 'react-router-dom';
 import './app.scss';
-import Header from '../header/Header';
+import Header from '../header';
 import appRoutes from './app-routes';
 
 function App() {

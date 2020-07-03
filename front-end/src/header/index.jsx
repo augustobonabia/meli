@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import HeaderSearchBar from './HeaderSearchBar';
 import './header.scss';
 
 function Header() {
@@ -12,7 +12,7 @@ function Header() {
             <img className="logo" alt="logo" src="../logo.png" />
           </Link>
         </div>
-        <SearchBar />
+        <HeaderSearchBar />
       </div>
     </header>
   );
