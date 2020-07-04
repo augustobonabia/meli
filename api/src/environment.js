@@ -1,6 +1,7 @@
 let settings;
 
 const devSettings = {
+  baseUrl: '/api',
   author: {
     name: 'Cosme',
     lastname: 'Fulanito',
@@ -13,6 +14,7 @@ const devSettings = {
 };
 
 const testSettings = {
+  baseUrl: '',
   author: {
     name: 'Cosme',
     lastname: 'Fulanito',
@@ -25,6 +27,7 @@ const testSettings = {
 };
 
 const prodSettings = {
+  baseUrl: '/api',
   author: {
     name: 'Augusto',
     lastname: 'Bonabía',

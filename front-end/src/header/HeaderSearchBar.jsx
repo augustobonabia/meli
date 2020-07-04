@@ -6,11 +6,12 @@ import {
   useHistory,
 } from 'react-router-dom';
 import appRoutes from '../core/app-routes';
+import useQuery from '../hooks/useQuery';
 
 function HeaderSearchBar() {
   const location = useLocation();
   const history = useHistory();
-  const query = (new URLSearchParams(location.search));
+  const query = useQuery();
 
   const matchSearchBox = useRouteMatch({
     path: appRoutes.searchBox.path,

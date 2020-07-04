@@ -2,8 +2,9 @@ import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Switch, Route } from 'react-router-dom';
 import './app.scss';
-import Header from '../header';
 import appRoutes from './app-routes';
+import Header from '../header';
+import ItemsList from '../items-list';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Switch>
         <Route exact path={appRoutes.searchBox.path} />
         <Route exact path={appRoutes.itemsList.path}>
-          <Items />
+          <ItemsList />
         </Route>
         <Route path={appRoutes.itemDetail.path}>
           <Item />
@@ -21,14 +22,6 @@ function App() {
           <div className="page-container">404</div>
         </Route>
       </Switch>
-    </div>
-  );
-}
-
-function Items() {
-  return (
-    <div className="page-container">
-      Items
     </div>
   );
 }

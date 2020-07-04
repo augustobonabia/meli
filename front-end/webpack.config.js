@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
-  entry: './src/core/index.jsx',
+  entry: './src/index.jsx',
   module: {
     rules: [
       {
@@ -51,6 +51,9 @@ module.exports = (env, argv) => {
         publicPath: 'http://localhost:3001/dist/',
         hotOnly: true,
         historyApiFallback: true,
+        proxy: {
+          '/api': 'http://localhost:3000',
+        },
       },
       plugins: [new webpack.HotModuleReplacementPlugin()],
     };
