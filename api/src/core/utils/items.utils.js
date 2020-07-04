@@ -20,14 +20,15 @@ function buildSearchResponseItemPrice(sourceResult, currencies) {
  * @returns Array de items.
  */
 function buildSearchResponseItems(sourceResults, currencies) {
-  return sourceResults.map((sourceResult) => ({
-    id: sourceResult.id,
-    title: sourceResult.title,
-    price: module.exports.buildSearchResponseItemPrice(sourceResult, currencies),
-    picture: sourceResult.thumbnail,
-    condition: sourceResult.condition,
-    free_shipping: sourceResult.shipping.free_shipping,
-  }));
+  return sourceResults
+    .map((sourceResult) => ({
+      id: sourceResult.id,
+      title: sourceResult.title,
+      price: module.exports.buildSearchResponseItemPrice(sourceResult, currencies),
+      picture: sourceResult.thumbnail,
+      condition: sourceResult.condition,
+      free_shipping: sourceResult.shipping.free_shipping,
+    }));
 }
 
 /**

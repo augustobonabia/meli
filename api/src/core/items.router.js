@@ -3,6 +3,7 @@
  */
 
 const express = require('express');
+const env = require('../environment');
 const sourceApiClient = require('./source-api-client');
 const itemsUtils = require('./utils/items.utils');
 const requestUtils = require('./utils/request.utils');
@@ -12,7 +13,7 @@ const router = express.Router();
 // Response builders
 
 async function buildItemsSearchResponse(req) {
-  const searchResults = await sourceApiClient.get(`sites/MLA/search?q=${req.query.q}&attributes=filters,available_filters,results`);
+  const searchResults = await sourceApiClient.get(`sites/MLA/search?q=${req.query.q}&attributes=filters,available_filters,results&limit=${env.resultsLimit}`);
   const { currencies } = await sourceApiClient.get('sites/MLA?attributes=currencies');
 
   return {

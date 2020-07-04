@@ -1,6 +1,7 @@
 let settings;
 
 const devSettings = {
+  resultsLimit: 4,
   baseUrl: '/api',
   author: {
     name: 'Cosme',
@@ -27,6 +28,7 @@ const testSettings = {
 };
 
 const prodSettings = {
+  resultsLimit: 4,
   baseUrl: '/api',
   author: {
     name: 'Augusto',
