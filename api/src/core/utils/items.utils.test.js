@@ -23,6 +23,9 @@ const results = [{
   condition: 'new',
   thumbnail: 'http://mla-s2-p.mlstatic.com/761434-MLA40103186494_122019-I.jpg',
   category_id: 'MLA16543',
+  address: {
+    state_name: 'Córdoba',
+  },
 }, {
   id: 'MLA829880187',
   title: 'Mesa de cuatro patas',
@@ -32,6 +35,8 @@ const results = [{
   condition: 'used',
   thumbnail: 'http://mla-s2-p.mlstatic.com/761434-MLA40103186494_122019-I.jpg',
   category_id: 'MLA16543',
+  address: {
+  },
 }];
 
 describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItemPrice.name}`, () => {
@@ -100,6 +105,7 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItems.n
       picture: 'http://mla-s2-p.mlstatic.com/761434-MLA40103186494_122019-I.jpg',
       condition: 'new',
       free_shipping: true,
+      location: 'Córdoba',
     });
 
     expect(items[1]).toStrictEqual({
@@ -109,6 +115,7 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItems.n
       picture: 'http://mla-s2-p.mlstatic.com/761434-MLA40103186494_122019-I.jpg',
       condition: 'used',
       free_shipping: false,
+      location: null,
     });
 
     priceBuilderSpy.mockRestore();

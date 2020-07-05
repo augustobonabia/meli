@@ -5,8 +5,8 @@ import './index.scss';
 
 function Header() {
   return (
-    <header className="header">
-      <div className="page-container">
+    <header className="page-section header">
+      <div className="page-section-container">
         <div className="logo-container">
           <Link to="/">
             <img className="logo" alt="logo" src="../logo.png" />

@@ -2,7 +2,6 @@
 @import "../core/mixins.scss";
 
 .header {
-  @include aligned-grow-flex;
   background-color: $app-color;
   padding: $tiny-space 0;
 
@@ -27,7 +26,7 @@
 
     input[type="text"].search-box {
       flex-grow: 1;
-      border-radius: $border-radious 0 0 $border-radious;
+      border-radius: $border-radius 0 0 $border-radius;
     }
 
     button.search-button {
@@ -36,7 +35,7 @@
       background-color: $page-background-color;
       align-items: center;
       justify-content: center;
-      border-radius: 0 $border-radious $border-radious 0;
+      border-radius: 0 $border-radius $border-radius 0;
 
       img {
         height: $input-font-size * 0.75;
