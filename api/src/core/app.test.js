@@ -9,9 +9,7 @@ jest.mock('./source-api-client', () => ({
 jest.mock('./utils/items.utils', () => ({
   buildSearchResponseItems: () => [],
   buildSearchResponseCategories: () => [],
-  buildGetItemResponse: () => {
-    return { item: {} };
-  },
+  buildGetItemResponse: () => ({ item: {} }),
 }));
 
 const request = supertest(app);
