@@ -3,8 +3,8 @@ import { hot } from 'react-hot-loader';
 import { Switch, Route } from 'react-router-dom';
 import './app.scss';
 import appRoutes from './app-routes';
-import Header from '../header';
-import ItemsList from '../items-list';
+import Header from '../Header';
+import ItemsList from '../ItemsList';
 
 function App() {
   return (

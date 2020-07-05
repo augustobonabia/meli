@@ -1,3 +1,4 @@
+// colors
 $app-color: #ffe600;
 $primary-action-color: #3483fa;
 $page-background-color: #eee;
@@ -7,11 +8,15 @@ $remarked-text-color: #333;
 $primary-text-color: #666;
 $secondary-text-color: #999;
 
+// spaces
 $tiny-space: 8px;
 $small-space: 2 * $tiny-space;
 $medium-space: 2 * $small-space;
 
-$border-radious: 4px;
-
+// font sizes
+$breadcumb-font-size: 14px;
 $input-font-size: 18px;
+
+// other
+$border-radious: 4px;
 $input-padding: 4px;

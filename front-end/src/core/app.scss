@@ -45,8 +45,15 @@ div.app {
   justify-content: center;
   width: 100%;
 
+  div.page {
+    @include aligned-grow-flex;
+  }
+
   div.page-container {
     @include aligned-grow-flex;
+    justify-content: left;
+
+    max-width: 1200px;
     margin: 0 $small-space;
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HeaderSearchBar from './HeaderSearchBar';
-import './header.scss';
+import './index.scss';
 
 function Header() {
   return (
