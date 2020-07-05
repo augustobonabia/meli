@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
 import useQuery from '../hooks/useQuery';
 import appRoutes from '../core/app-routes';
 import Breadcrumb from '../shared-componets/Breadcrumb';
 import Item from './Item';
+import { searchItems } from '../core/ApiUtils';
 import './index.scss';
-
-const search = async (searchTerm) => {
-  const response = await Axios.get(`/api/items?q=${searchTerm}`);
-  const results = response.data;
-
-  return {
-    author: results.author,
-    categories: results.categories,
-    items: results.items,
-  };
-};
 
 function ItemsList() {
   const query = useQuery();
@@ -24,7 +13,7 @@ function ItemsList() {
   const [items, setItems] = useState([]);
 
   const updateResults = async () => {
-    const results = await search(searchTerm);
+    const results = await searchItems(searchTerm);
     setCategories(results.categories);
     setItems(results.items);
   };

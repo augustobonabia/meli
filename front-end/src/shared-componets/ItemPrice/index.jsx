@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
-import { sliceByUntilEnd, concatAll } from '../../core/utils';
+import { formatPriceAmount } from '../../core/utils';
 
 function Item(props) {
   const { price } = props;
-
-  const amountStr = price.amount.toString();
-  const amountSubStrings = sliceByUntilEnd(amountStr, 3).reverse();
-  const formattedAmount = concatAll(amountSubStrings, '.');
+  const formattedAmount = formatPriceAmount(price.amount);
 
   const renderCents = (decimals) => {
     if (decimals) {
