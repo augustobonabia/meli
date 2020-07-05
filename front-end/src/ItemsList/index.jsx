@@ -9,25 +9,36 @@ import './index.scss';
 function ItemsList() {
   const query = useQuery();
   const searchTerm = query.get(appRoutes.itemsList.params.search);
-  const [categories, setCategories] = useState([]);
-  const [items, setItems] = useState([]);
+  const [listResults, setListResults] = useState({
+    categories: [],
+    items: [],
+    isOutdated: true,
+  });
 
   const updateResults = async () => {
     const results = await searchItems(searchTerm);
-    setCategories(results.categories);
-    setItems(results.items);
+    setListResults({
+      categories: results.categories,
+      items: results.items,
+      isOutdated: false,
+    });
   };
 
   useEffect(() => { updateResults(searchTerm); }, [searchTerm]);
 
   const rendeResults = () => {
-    console.log('render: ', items);
+    // No renderiza los resultados hasta que no estén actualizados
+    if (listResults.isOutdated) {
+      return null;
+    }
+
+    const { items } = listResults;
     if (items.length) {
       return items.map((item) => (
         <Item key={item.id} item={item} />
       ));
     }
-    
+
     return <span className="no-results">Lo sentimos, no hemos encontrado lo que buscabas</span>;
   };
 
@@ -35,7 +46,7 @@ function ItemsList() {
     <>
       <div className="page-section">
         <div className="page-section-container">
-          <Breadcrumb categories={categories} />
+          <Breadcrumb categories={listResults.categories} />
         </div>
       </div>
       <div className="page-section">
