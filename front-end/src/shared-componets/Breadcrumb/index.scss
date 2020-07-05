@@ -1,5 +1,9 @@
 @import '../../core/variables.scss';
 
+nav.no-breadcrumb {
+  height: $small-space;
+}
+
 nav.breadcrumb {
   color: $secondary-text-color;
   font-size: $breadcumb-font-size;

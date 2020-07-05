@@ -5,7 +5,14 @@ ul.items-list {
   background-color: $container-background-color;
   border-radius: $border-radius;
   flex-direction: column;
+  min-height: 40vh;
   margin-bottom: $medium-space !important;
+
+  span.no-results {
+    padding: $medium-space;
+    color: $remarked-text-color;
+    font-size: $list-item-title-font-size;
+  }
 
   li.item-container, li.item-container > a {
     @include aligned-grow-flex;

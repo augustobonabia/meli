@@ -23,8 +23,10 @@ function Breadcrumb(props) {
     return <span className={className}>{categoryName}</span>;
   };
 
+  const className = categories.length ? 'breadcrumb' : 'no-breadcrumb';
+
   return (
-    <nav className="breadcrumb">
+    <nav className={className}>
       {
         categories.map((category, categoryIndex) => (
           // eslint-disable-next-line react/no-array-index-key

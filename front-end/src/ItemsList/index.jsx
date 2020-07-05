@@ -20,6 +20,17 @@ function ItemsList() {
 
   useEffect(() => { updateResults(searchTerm); }, [searchTerm]);
 
+  const rendeResults = () => {
+    console.log('render: ', items);
+    if (items.length) {
+      return items.map((item) => (
+        <Item key={item.id} item={item} />
+      ));
+    }
+    
+    return <span className="no-results">Lo sentimos, no hemos encontrado lo que buscabas</span>;
+  };
+
   return (
     <>
       <div className="page-section">
@@ -29,11 +40,7 @@ function ItemsList() {
       </div>
       <div className="page-section">
         <ul className="page-section-container items-list">
-          {
-            items.map((item) => (
-              <Item key={item.id} item={item} />
-            ))
-          }
+          {rendeResults()}
         </ul>
       </div>
     </>
