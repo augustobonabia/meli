@@ -1,9 +1,13 @@
 const supertest = require('supertest');
 const app = require('./app');
-const sourceApiClient = require('./source-api-client');
+const sourceApiClient = require('./api-client');
 
-jest.mock('./source-api-client', () => ({
-  get: () => ({}),
+jest.mock('./api-client', () => ({
+  getItems: () => ({}),
+  getCurrencies: () => ({}),
+  getItem: () => ({}),
+  getItemDescription: () => ({}),
+  getCategoryPath: () => ({}),
 }));
 
 jest.mock('./utils/items.utils', () => ({
@@ -57,7 +61,7 @@ describe('Response errors', () => {
   });
 
   test('Un error interno del servidor debe devolver un error 500', async () => {
-    sourceApiClient.get = jest.fn().mockImplementation(() => {
+    sourceApiClient.getItems = jest.fn().mockImplementation(() => {
       throw new Error('random error');
     });
 

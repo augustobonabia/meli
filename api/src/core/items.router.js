@@ -3,8 +3,7 @@
  */
 
 const express = require('express');
-const env = require('../environment');
-const sourceApiClient = require('./source-api-client');
+const sourceApiClient = require('./api-client');
 const itemsUtils = require('./utils/items.utils');
 const requestUtils = require('./utils/request.utils');
 
@@ -13,8 +12,8 @@ const router = express.Router();
 // Response builders
 
 async function buildItemsSearchResponse(req) {
-  const searchResults = await sourceApiClient.get(`sites/MLA/search?q=${req.query.q}&attributes=filters,available_filters,results&limit=${env.resultsLimit}`);
-  const { currencies } = await sourceApiClient.get('sites/MLA?attributes=currencies');
+  const searchResults = await sourceApiClient.getItems(req.query.q);
+  const currencies = await sourceApiClient.getCurrencies();
 
   return {
     categories: await itemsUtils.buildSearchResponseCategories(searchResults),
@@ -23,9 +22,10 @@ async function buildItemsSearchResponse(req) {
 }
 
 async function buildItemResponse(req) {
-  const item = await sourceApiClient.get(`items/${req.params.id}`);
-  const itemDescription = await sourceApiClient.get(`items/${req.params.id}/description`);
-  const { currencies } = await sourceApiClient.get('sites/MLA?attributes=currencies');
+  const itemId = req.params.id;
+  const item = await sourceApiClient.getItem(itemId);
+  const itemDescription = await sourceApiClient.getItemDescription(itemId);
+  const currencies = await sourceApiClient.getCurrencies();
 
   return itemsUtils.buildGetItemResponse(item, itemDescription, currencies);
 }

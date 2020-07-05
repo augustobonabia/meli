@@ -1,7 +1,7 @@
 const itemsUtils = require('./items.utils');
-const sourceApiClient = require('../source-api-client');
+const sourceApiClient = require('../api-client');
 
-jest.mock('../source-api-client');
+jest.mock('../api-client');
 
 const currencies = [
   {
@@ -166,10 +166,9 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseCategor
   });
 
   test('debe  devolver un array de nombres de categorías cuando no hay un filtro aplicado y hay filtros de categorías para aplicar', async () => {
-    sourceApiClient.get.mockImplementation((path) => {
+    sourceApiClient.getCategoryPath.mockImplementation((path) => {
       expect(path).toContain('MLA1763');
-
-      return { path_from_root: pathFromRootMock };
+      return pathFromRootMock;
     });
 
     const searchResults = {

@@ -1,5 +1,5 @@
 const sanitizeHtml = require('sanitize-html');
-const sourceApiClient = require('../source-api-client');
+const sourceApiClient = require('../api-client');
 
 function buildItemPrice(price, currencyId, currencies) {
   const amount = Math.trunc(price);
@@ -99,7 +99,7 @@ async function buildSearchResponseCategories(searchResults) {
         return prev;
       }, { results: 0 }).id;
 
-      categoryPath = (await sourceApiClient.get(`categories/${bestCategoryId}?attributes=path_from_root`)).path_from_root;
+      categoryPath = await sourceApiClient.getCategoryPath(bestCategoryId);
     }
   }
 
