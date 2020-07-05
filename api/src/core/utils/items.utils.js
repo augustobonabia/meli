@@ -1,3 +1,4 @@
+const sanitizeHtml = require('sanitize-html');
 const sourceApiClient = require('../source-api-client');
 
 function buildSearchResponseItemPrice(sourceResult, currencies) {
@@ -23,11 +24,12 @@ function buildSearchResponseItems(sourceResults, currencies) {
   return sourceResults
     .map((sourceResult) => ({
       id: sourceResult.id,
-      title: sourceResult.title,
+      title: sanitizeHtml(sourceResult.title),
       price: module.exports.buildSearchResponseItemPrice(sourceResult, currencies),
       picture: sourceResult.thumbnail,
       condition: sourceResult.condition,
       free_shipping: sourceResult.shipping.free_shipping,
+      location: (sourceResult.address && sourceResult.address.state_name) || null,
     }));
 }
 
