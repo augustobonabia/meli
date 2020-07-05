@@ -130,7 +130,7 @@ html {
  */
 
 a:focus {
-    outline: thin dotted;
+    outline: none;
 }
 
 /**
@@ -140,6 +140,12 @@ a:focus {
 a:active,
 a:hover {
     outline: 0;
+}
+
+a {
+    outline: none;
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
 }
 
 /**

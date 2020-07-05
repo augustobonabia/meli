@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
+import { sliceByUntilEnd, concatAll } from '../../core/utils';
 
 function Item(props) {
   const { price } = props;
+
+  const amountStr = price.amount.toString();
+  const amountSubStrings = sliceByUntilEnd(amountStr, 3).reverse();
+  const formattedAmount = concatAll(amountSubStrings, '.');
 
   const renderCents = (decimals) => {
     if (decimals) {
@@ -16,7 +21,7 @@ function Item(props) {
   return (
     <span alt="Precio" className="price">
       <span alt="Moneda" className="currency">{price.currency}</span>
-      <span alt="Monto" className="amount">{price.amount}</span>
+      <span alt="Monto" className="amount">{formattedAmount}</span>
       {renderCents(price.decimals)}
     </span>
   );

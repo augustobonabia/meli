@@ -7,11 +7,10 @@ ul.items-list {
   flex-direction: column;
   margin-bottom: $medium-space !important;
 
-  li.item-container {
+  li.item-container, li.item-container > a {
     @include aligned-grow-flex;
     width: 100%;
 
-    
     &:not(:first-child) {
       article.item {
         border-style: solid;

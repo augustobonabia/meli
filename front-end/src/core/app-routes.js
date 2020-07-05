@@ -8,7 +8,7 @@ const appRoutes = Object.freeze({
     params: { search: 'search' },
   },
   itemDetail: {
-    path: '/item/:id',
+    path: '/items/:id',
     params: null,
   },
 });

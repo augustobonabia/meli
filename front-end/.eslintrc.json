@@ -25,6 +25,9 @@
         ],
         "require-await": [
             2
+        ],
+        "no-plusplus": [
+            0
         ]
     }
 }
