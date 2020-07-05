@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`El breadcrumb se renderiza correctamente 1`] = `
+<nav
+  className="breadcrumb"
+>
+  <span>
+    <span
+      className="category-name"
+    >
+      Animales y Mascotas
+    </span>
+  </span>
+  <span>
+    <span
+      className="separator"
+    >
+      &gt;
+    </span>
+    <span
+      className="category-name"
+    >
+      Perros
+    </span>
+  </span>
+  <span>
+    <span
+      className="separator"
+    >
+      &gt;
+    </span>
+    <span
+      className="category-name last-in-path"
+    >
+      Perros de Raza
+    </span>
+  </span>
+</nav>
+`;

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`El header se renderiza correctamente 1`] = `
+<header
+  className="page-section header"
+>
+  <div
+    className="page-section-container"
+  >
+    <div
+      className="logo-container"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="logo"
+          className="logo"
+          src="../logo.png"
+        />
+      </a>
+    </div>
+    <form
+      className="search-form"
+      name="searchForm"
+      onSubmit={[Function]}
+    >
+      <input
+        aria-label="Ingresá tu búsqueda"
+        className="search-box"
+        name="search"
+        onChange={[Function]}
+        placeholder="Nunca dejes de buscar"
+        size="1"
+        type="text"
+        value=""
+      />
+      <button
+        className="search-button"
+        type="submit"
+        value="Submit"
+      >
+        <img
+          alt="searchIcon"
+          src="./search.png"
+        />
+      </button>
+    </form>
+  </div>
+</header>
+`;

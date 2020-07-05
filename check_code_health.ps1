@@ -54,12 +54,17 @@ Write-Host -NoNewline "Frontend: Restore (npm)... "
 npm install --silent --no-progress >> $OutputFile
 Check-Result
 
-Write-Host -NoNewline "API: Lint... "
+Write-Host -NoNewline "Frontend: Lint... "
 & npm run lint >> $OutputFile
 Check-Result
 
-Write-Host -NoNewline "API: Build... "
+Write-Host -NoNewline "Frontend: Build... "
 & npm run build >> $OutputFile
 Check-Result
+
+Write-Host -NoNewline "Frontend: Test... "
+& npm run test:once >> $OutputFile
+Check-Result
+
 
 Exit-Test

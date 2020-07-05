@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`El precio se renderiza correctamente 1`] = `
+<span
+  alt="Precio"
+  className="price"
+>
+  <span
+    alt="Moneda"
+    className="currency"
+  >
+    $
+  </span>
+  <span
+    alt="Monto"
+    className="amount"
+  >
+    4.850
+  </span>
+  <span
+    className="cents"
+  >
+    50
+  </span>
+</span>
+`;

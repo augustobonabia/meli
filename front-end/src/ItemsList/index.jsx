@@ -3,7 +3,7 @@ import useQuery from '../hooks/useQuery';
 import appRoutes from '../core/app-routes';
 import Breadcrumb from '../shared-componets/Breadcrumb';
 import Item from './Item';
-import { searchItems } from '../core/ApiUtils';
+import { searchItems } from '../core/api-utils';
 import './index.scss';
 
 function ItemsList() {
