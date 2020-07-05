@@ -1,17 +1,27 @@
 const sanitizeHtml = require('sanitize-html');
 const sourceApiClient = require('../source-api-client');
 
-function buildSearchResponseItemPrice(sourceResult, currencies) {
-  const amount = Math.trunc(sourceResult.price);
-  const unroundedPriceDecimals = (sourceResult.price - amount) * 100;
+function buildItemPrice(price, currencyId, currencies) {
+  const amount = Math.trunc(price);
+  const unroundedPriceDecimals = (price - amount) * 100;
 
   return {
     currency: currencies
-      .find((currency) => currency.id === sourceResult.currency_id)
+      .find((currency) => currency.id === currencyId)
       .symbol,
     amount,
     decimals: Math.round(unroundedPriceDecimals),
   };
+}
+
+function buildGetItemResponsePicture(pictures) {
+  const firstPictureOrUndefined = pictures.find((p) => p);
+
+  if (!firstPictureOrUndefined) {
+    return null;
+  }
+
+  return firstPictureOrUndefined.secure_url || firstPictureOrUndefined.url;
 }
 
 /**
@@ -25,12 +35,35 @@ function buildSearchResponseItems(sourceResults, currencies) {
     .map((sourceResult) => ({
       id: sourceResult.id,
       title: sanitizeHtml(sourceResult.title),
-      price: module.exports.buildSearchResponseItemPrice(sourceResult, currencies),
+      price: module.exports.buildItemPrice(
+        sourceResult.price,
+        sourceResult.currency_id,
+        currencies,
+      ),
       picture: sourceResult.thumbnail,
       condition: sourceResult.condition,
       free_shipping: sourceResult.shipping.free_shipping,
       location: (sourceResult.address && sourceResult.address.state_name) || null,
     }));
+}
+
+function buildGetItemResponse(sourceItem, sourceItemDesc, currencies) {
+  return {
+    item: {
+      id: sourceItem.id,
+      title: sanitizeHtml(sourceItem.title),
+      price: module.exports.buildItemPrice(
+        sourceItem.price,
+        sourceItem.currency_id,
+        currencies,
+      ),
+      picture: buildGetItemResponsePicture(sourceItem.pictures),
+      condition: sourceItem.condition,
+      free_shipping: sourceItem.shipping.free_shipping,
+      sold_quantity: sourceItem.sold_quantity,
+      description: sanitizeHtml(sourceItemDesc.plain_text),
+    },
+  };
 }
 
 /**
@@ -76,5 +109,6 @@ async function buildSearchResponseCategories(searchResults) {
 module.exports = {
   buildSearchResponseItems,
   buildSearchResponseCategories,
-  buildSearchResponseItemPrice,
+  buildItemPrice,
+  buildGetItemResponse,
 };

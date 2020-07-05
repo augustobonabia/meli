@@ -5,7 +5,14 @@ const sourceApiClient = require('./source-api-client');
 jest.mock('./source-api-client', () => ({
   get: () => ({}),
 }));
-jest.mock('./utils/items.utils');
+
+jest.mock('./utils/items.utils', () => ({
+  buildSearchResponseItems: () => [],
+  buildSearchResponseCategories: () => [],
+  buildGetItemResponse: () => {
+    return { item: {} };
+  },
+}));
 
 const request = supertest(app);
 
@@ -23,18 +30,13 @@ describe('Se debe agregar la firma a las respuestas de los endpoints', () => {
   };
 
   test('GET: /items"', async (done) => {
-    jest.mock('./utils/items.utils', () => ({
-      buildSearchResponseItems: () => [],
-      buildSearchResponseCategories: () => [],
-    }));
-
     const response = await request.get('/items');
 
     testAuthor(response);
     done();
   });
 
-  test.skip('GET: /items/:id"', async (done) => {
+  test('GET: /items/:id"', async (done) => {
     const response = await request.get('/items/854');
 
     testAuthor(response);

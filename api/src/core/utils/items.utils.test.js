@@ -39,14 +39,14 @@ const results = [{
   },
 }];
 
-describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItemPrice.name}`, () => {
+describe(`Listado de búsqueda - items - ${itemsUtils.buildItemPrice.name}`, () => {
   test('genera la cantidad correcta de monto y "decimales" de un precio con un decimal', () => {
     const result = {
       price: 2459.9,
       currency_id: 'USD',
     };
 
-    const itemPrice = itemsUtils.buildSearchResponseItemPrice(result, currencies);
+    const itemPrice = itemsUtils.buildItemPrice(result.price, result.currency_id, currencies);
 
     expect(itemPrice.amount).toBe(2459);
     expect(itemPrice.decimals).toBe(90);
@@ -58,7 +58,7 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItemPri
       currency_id: 'USD',
     };
 
-    const itemPrice = itemsUtils.buildSearchResponseItemPrice(result, currencies);
+    const itemPrice = itemsUtils.buildItemPrice(result.price, result.currency_id, currencies);
 
     expect(itemPrice.amount).toBe(2459);
     expect(itemPrice.decimals).toBe(97);
@@ -70,7 +70,7 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItemPri
       currency_id: 'USD',
     };
 
-    const itemPrice = itemsUtils.buildSearchResponseItemPrice(result, currencies);
+    const itemPrice = itemsUtils.buildItemPrice(result.price, result.currency_id, currencies);
 
     expect(itemPrice.amount).toBe(2459);
     expect(itemPrice.decimals).toBe(0);
@@ -82,20 +82,20 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItemPri
       currency_id: 'USD',
     };
 
-    expect(itemsUtils.buildSearchResponseItemPrice(result1, currencies).currency).toBe('U$S');
+    expect(itemsUtils.buildItemPrice(result1.price, result1.currency_id, currencies).currency).toBe('U$S');
 
     const result2 = {
       price: 2,
       currency_id: 'ARS',
     };
 
-    expect(itemsUtils.buildSearchResponseItemPrice(result2, currencies).currency).toBe('$');
+    expect(itemsUtils.buildItemPrice(result2.price, result2.currency_id, currencies).currency).toBe('$');
   });
 });
 
 describe(`Listado de búsqueda - items - ${itemsUtils.buildSearchResponseItems.name}`, () => {
   test('una lista con varios resultados debe construir los items en el formato correcto', () => {
-    const priceBuilderSpy = jest.spyOn(itemsUtils, 'buildSearchResponseItemPrice').mockReturnValue(null);
+    const priceBuilderSpy = jest.spyOn(itemsUtils, 'buildItemPrice').mockReturnValue(null);
     const items = itemsUtils.buildSearchResponseItems(results, currencies);
 
     expect(items[0]).toStrictEqual({

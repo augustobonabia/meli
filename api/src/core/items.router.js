@@ -22,8 +22,12 @@ async function buildItemsSearchResponse(req) {
   };
 }
 
-function buildItemResponse() {
-  throw new Error('Not implemented');
+async function buildItemResponse(req) {
+  const item = await sourceApiClient.get(`items/${req.params.id}`);
+  const itemDescription = await sourceApiClient.get(`items/${req.params.id}/description`);
+  const { currencies } = await sourceApiClient.get('sites/MLA?attributes=currencies');
+
+  return itemsUtils.buildGetItemResponse(item, itemDescription, currencies);
 }
 
 // Endpoints
