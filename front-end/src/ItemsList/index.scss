@@ -11,18 +11,27 @@ ul.items-list {
     @include aligned-grow-flex;
     width: 100%;
 
+    
+    &:not(:first-child) {
+      article.item {
+        border-style: solid;
+        border-top-width: 0.001em;
+        border-color: $separator-color;
+      }
+    }
+
     article.item {
       display: inline-flex;
       flex-grow: 1;
       flex-wrap: wrap;
       justify-content: center;
-      margin: $small-space;
-  
-      @media only screen and (min-width: 768px) {
+      margin: 0 $small-space;
+      padding: $small-space 0;
+
+      @media(min-width: 768px) {
         justify-content: left;
         flex-wrap: nowrap;
       }
-
 
       img.thumbnail {
         width: 180px;
