@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Un item del listado de búsqueda se renderiza correctamente 1`] = `
+<li
+  className="item-container"
+>
+  <a
+    href="/items/MLA123"
+    onClick={[Function]}
+  >
+    <article
+      alt="Producto"
+      className="item"
+    >
+      <img
+        alt="Pequeña imagen del producto"
+        className="thumbnail"
+        src="una-imagen.png"
+      />
+      <div
+        className="item-content"
+      >
+        <section
+          alt="Información principal"
+          className="abstract"
+        >
+          <div
+            className="price-and-shipping"
+          >
+            <span
+              alt="Precio"
+              className="price"
+            >
+              <span
+                alt="Moneda"
+                className="currency"
+              >
+                $
+              </span>
+              <span
+                alt="Monto"
+                className="amount"
+              >
+                34.999
+              </span>
+              <span
+                className="cents"
+              >
+                99
+              </span>
+            </span>
+            <img
+              alt="¡Envío gratis!"
+              className="free-shipping"
+              src="../shipping.png"
+            />
+          </div>
+          <h1
+            alt="Título"
+          >
+            Mesa de ping pong
+          </h1>
+        </section>
+        <section
+          alt="Información adicional"
+          className="additional-info"
+        >
+          <span
+            alt="Ubicación del vendedor"
+          >
+            Capital Federal
+          </span>
+        </section>
+      </div>
+    </article>
+  </a>
+</li>
+`;
