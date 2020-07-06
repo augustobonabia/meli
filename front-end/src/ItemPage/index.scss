@@ -1,0 +1,78 @@
+@import '../core/mixins.scss';
+@import '../core/variables.scss';
+
+$img-width: 680px;
+
+.item-details-container {
+  @include page;
+
+  .grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-column-gap: $tiny-space;
+    padding: $medium-space;
+        
+    @media(min-width: 1200px) {
+      grid-template-columns: 5fr 2fr;
+    }
+
+    article {
+      img {
+        width: 100%;
+        max-width: $img-width;
+      }
+  
+      section.product-description {
+        padding-top: $medium-space;
+  
+        h1 {
+          font-size: $item-detail-desc-title-font-size;
+          font-weight: bold;
+          color: $remarked-text-color;
+        }
+  
+        p {
+          padding: $medium-space 0;
+          font-size: $item-detail-desc-content-font-size;
+          color: $primary-text-color;
+        }
+      }
+    }
+  
+    aside {
+      align-self: start;
+      color: $remarked-text-color;
+  
+      h1 {
+        font-size: $item-detail-title-font-size;
+        font-weight: bold;
+        padding-top: $small-space;
+        padding-bottom: $medium-space;
+      }
+  
+      section.status {
+        font-size: $item-detail-status-font-size;
+        color: $primary-text-color;
+      }
+  
+      span.price {
+        font-size: $item-detail-price-font-size;
+  
+        span.currency {
+          margin-right: $small-space;
+        }
+      }
+  
+      button.buy {
+        width: 100%;
+        font-size: $item-detail-title-font-size;
+        border-radius: $border-radius;
+        margin-top: $medium-space;
+        padding: $tiny-space 0;
+        background-color: $primary-action-color;
+        color: $page-background-color;
+      }
+    }
+  }
+}

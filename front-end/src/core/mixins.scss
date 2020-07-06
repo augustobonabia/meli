@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 @mixin aligned-flex {
   display: flex;
   justify-content: center;
@@ -7,4 +9,10 @@
 @mixin aligned-grow-flex {
   @include aligned-flex;
   flex-grow: 1;
+}
+
+@mixin page {
+  background-color: $container-background-color;
+  border-radius: $border-radius;
+  margin-bottom: $medium-space !important;
 }

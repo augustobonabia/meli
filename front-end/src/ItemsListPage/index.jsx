@@ -6,7 +6,7 @@ import Item from './Item';
 import { searchItems } from '../core/api-utils';
 import './index.scss';
 
-function ItemsList() {
+function ItemsListPage() {
   const query = useQuery();
   const searchTerm = query.get(appRoutes.itemsList.params.search);
   const [listResults, setListResults] = useState({
@@ -58,4 +58,4 @@ function ItemsList() {
   );
 }
 
-export default ItemsList;
+export default ItemsListPage;

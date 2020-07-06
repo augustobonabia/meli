@@ -2,11 +2,9 @@
 @import '../core/mixins.scss';
 
 ul.items-list {
-  background-color: $container-background-color;
-  border-radius: $border-radius;
+  @include page;
   flex-direction: column;
   min-height: 40vh;
-  margin-bottom: $medium-space !important;
 
   span.no-results {
     padding: $medium-space;
@@ -71,8 +69,8 @@ ul.items-list {
             }
 
             img.free-shipping {
-              width: $list-item-price-font-size;
-              height: $list-item-price-font-size;
+              width: $list-item-price-font-size * 0.9;
+              height: $list-item-price-font-size * 0.9;
               margin-left: $tiny-space;
             }
           }

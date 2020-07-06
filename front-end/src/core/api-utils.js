@@ -19,7 +19,13 @@ async function searchItems(searchTerm) {
   };
 }
 
-function getItem() {
+async function getItem(itemId) {
+  const response = await get(`items/${itemId}`);
+
+  return {
+    item: response.item,
+    categories: response.categories,
+  };
 }
 
 export { searchItems, getItem };

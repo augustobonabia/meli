@@ -4,7 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import './app.scss';
 import appRoutes from './app-routes';
 import Header from '../Header';
-import ItemsList from '../ItemsList';
+import ItemsListPage from '../ItemsListPage';
+import ItemPage from '../ItemPage';
 
 function App() {
   return (
@@ -13,23 +14,15 @@ function App() {
       <Switch>
         <Route exact path={appRoutes.searchBox.path} />
         <Route exact path={appRoutes.itemsList.path}>
-          <ItemsList />
+          <ItemsListPage />
         </Route>
         <Route path={appRoutes.itemDetail.path}>
-          <Item />
+          <ItemPage />
         </Route>
         <Route path="*">
           <div className="page-container">404</div>
         </Route>
       </Switch>
-    </div>
-  );
-}
-
-function Item() {
-  return (
-    <div className="page-container">
-      Item
     </div>
   );
 }
