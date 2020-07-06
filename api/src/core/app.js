@@ -3,11 +3,13 @@
  */
 
 const express = require('express');
+const cors = require('cors');
 const items = require('./items.router');
 const middlewares = require('./middlewares');
 const env = require('../environment');
 
 const app = express();
+app.use(cors());
 
 app.use(middlewares.setAuthor);
 

@@ -1,5 +1,5 @@
 const appSettings = {
-  apiBaseUrl: '/api/',
+  apiBaseUrl: 'http://localhost:3000/api/',
 };
 
 export default appSettings;
