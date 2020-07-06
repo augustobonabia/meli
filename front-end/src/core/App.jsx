@@ -1,27 +1,30 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './app.scss';
 import appRoutes from './app-routes';
 import Header from '../Header';
 import ItemsListPage from '../ItemsListPage';
 import ItemPage from '../ItemPage';
+import ErrorBoundary from '../shared-componets/ErrorBoundary';
 
 function App() {
   return (
     <div className="app">
       <Header />
       <Switch>
-        <Route exact path={appRoutes.searchBox.path} />
-        <Route exact path={appRoutes.itemsList.path}>
-          <ItemsListPage />
-        </Route>
-        <Route path={appRoutes.itemDetail.path}>
-          <ItemPage />
-        </Route>
-        <Route path="*">
-          <div className="page-container">404</div>
-        </Route>
+        <ErrorBoundary>
+          <Route exact path={appRoutes.searchBox.path} />
+          <Route exact path={appRoutes.itemsList.path}>
+            <ItemsListPage />
+          </Route>
+          <Route path={appRoutes.itemDetail.path}>
+            <ItemPage />
+          </Route>
+          <Route path="*">
+            <Redirect to={appRoutes.searchBox.path} />
+          </Route>
+        </ErrorBoundary>
       </Switch>
     </div>
   );
