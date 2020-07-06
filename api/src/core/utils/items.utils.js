@@ -47,7 +47,7 @@ function buildSearchResponseItems(sourceResults, currencies) {
     }));
 }
 
-function buildGetItemResponse(sourceItem, sourceItemDesc, currencies) {
+function buildGetItemResponse(sourceItem, itemDescription, currencies) {
   return {
     id: sourceItem.id,
     title: sanitizeHtml(sourceItem.title),
@@ -60,7 +60,7 @@ function buildGetItemResponse(sourceItem, sourceItemDesc, currencies) {
     condition: sourceItem.condition,
     free_shipping: sourceItem.shipping.free_shipping,
     sold_quantity: sourceItem.sold_quantity,
-    description: sanitizeHtml(sourceItemDesc.plain_text),
+    description: sanitizeHtml(itemDescription),
   };
 }
 
