@@ -4,10 +4,10 @@ const sourceApiClient = require('./api-client');
 
 jest.mock('./api-client', () => ({
   getItems: () => ({}),
-  getCurrencies: () => ({}),
+  getCurrencies: () => [],
   getItem: () => ({}),
   getItemDescription: () => ({}),
-  getCategoryPath: () => ({}),
+  getCategoryPath: () => [],
 }));
 
 jest.mock('./utils/items.utils', () => ({

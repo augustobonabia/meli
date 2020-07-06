@@ -23,11 +23,15 @@ async function buildItemsSearchResponse(req) {
 
 async function buildItemResponse(req) {
   const itemId = req.params.id;
-  const item = await sourceApiClient.getItem(itemId);
+  const sourceItem = await sourceApiClient.getItem(itemId);
+  const categoryPath = await sourceApiClient.getCategoryPath(sourceItem.category_id);
   const itemDescription = await sourceApiClient.getItemDescription(itemId);
   const currencies = await sourceApiClient.getCurrencies();
 
-  return itemsUtils.buildGetItemResponse(item, itemDescription, currencies);
+  return {
+    item: itemsUtils.buildGetItemResponse(sourceItem, itemDescription, currencies),
+    categories: categoryPath.map((category) => category.name),
+  };
 }
 
 // Endpoints

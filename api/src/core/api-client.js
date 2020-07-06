@@ -33,7 +33,7 @@ function getItems(searchTerm) {
 }
 
 function getItem(id) {
-  return get(`items/${id}?attributes=id,title,price,currency_id,pictures,condition,shipping,sold_quantity`);
+  return get(`items/${id}?attributes=id,title,price,currency_id,pictures,condition,shipping,sold_quantity,category_id`);
 }
 
 async function getItemDescription(id) {

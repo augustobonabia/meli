@@ -49,20 +49,18 @@ function buildSearchResponseItems(sourceResults, currencies) {
 
 function buildGetItemResponse(sourceItem, sourceItemDesc, currencies) {
   return {
-    item: {
-      id: sourceItem.id,
-      title: sanitizeHtml(sourceItem.title),
-      price: module.exports.buildItemPrice(
-        sourceItem.price,
-        sourceItem.currency_id,
-        currencies,
-      ),
-      picture: buildGetItemResponsePicture(sourceItem.pictures),
-      condition: sourceItem.condition,
-      free_shipping: sourceItem.shipping.free_shipping,
-      sold_quantity: sourceItem.sold_quantity,
-      description: sanitizeHtml(sourceItemDesc.plain_text),
-    },
+    id: sourceItem.id,
+    title: sanitizeHtml(sourceItem.title),
+    price: module.exports.buildItemPrice(
+      sourceItem.price,
+      sourceItem.currency_id,
+      currencies,
+    ),
+    picture: buildGetItemResponsePicture(sourceItem.pictures),
+    condition: sourceItem.condition,
+    free_shipping: sourceItem.shipping.free_shipping,
+    sold_quantity: sourceItem.sold_quantity,
+    description: sanitizeHtml(sourceItemDesc.plain_text),
   };
 }
 
