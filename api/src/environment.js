@@ -1,6 +1,7 @@
 let settings;
 
 const devSettings = {
+  enableCORS: false,
   resultsLimit: 4,
   baseUrl: '/api',
   author: {
@@ -15,6 +16,7 @@ const devSettings = {
 };
 
 const testSettings = {
+  enableCORS: false,
   baseUrl: '',
   author: {
     name: 'Cosme',
@@ -28,6 +30,7 @@ const testSettings = {
 };
 
 const prodSettings = {
+  enableCORS: true,
   resultsLimit: 4,
   baseUrl: '/api',
   author: {

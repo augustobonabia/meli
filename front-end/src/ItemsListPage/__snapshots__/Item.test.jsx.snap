@@ -5,7 +5,7 @@ exports[`Un item del listado de búsqueda se renderiza correctamente 1`] = `
   className="item-container"
 >
   <a
-    href="/items/MLA123"
+    href="#/items/MLA123"
     onClick={[Function]}
   >
     <article

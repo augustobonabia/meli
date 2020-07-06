@@ -11,7 +11,7 @@ exports[`El header se renderiza correctamente 1`] = `
       className="logo-container"
     >
       <a
-        href="/"
+        href="#/"
         onClick={[Function]}
       >
         <img

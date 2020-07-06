@@ -9,7 +9,10 @@ const middlewares = require('./middlewares');
 const env = require('../environment');
 
 const app = express();
-app.use(cors());
+
+if (env.enableCORS) {
+  app.use(cors());
+}
 
 app.use(middlewares.setAuthor);
 
