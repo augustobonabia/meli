@@ -21,6 +21,7 @@ Servidor desarrollado para el [Test Práctico - Frontend](https://www.dropbox.co
 * [supertest] - Provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
 * [axios] - Promise based HTTP client for the browser and node.js.
 * [nodemon] - Automatically restarts the node application when file changes in the directory are detected.
+* [sanitize-html] - provides a simple HTML sanitizer with a clear API.
 
 ##### Instalación
 ```
@@ -28,6 +29,8 @@ $ npm install
 ```
 
 ## Uso
+En el archivo `environment.js` se pueden configurar todas las variables de entorno, como por ejemplo en nombre y apellido del autor, cantidad de resultados a dovlver en un listado, nivel de logueo, etc...
+
 ##### Producción
 Para levantar la app en modo productivo:
 ```
@@ -51,10 +54,32 @@ Para intentar corregir automáticamente los errores detectados por ESLint
 $ npm run lint:fix
 ```
 
+## Estructura principal de archivos
 
+```
++-- src
+|   +-- core
+|       +-- app.js // Archivo principal de la aplicación, donde se configuran todos los middlewares y routes
+|       +-- items.router.js // El único router que existe, con los endpoints '/items' y 'items/:id'
+|       +-- utils // Contiene todos archivos utils con funciones para mantener el código flexible, desacoplado y testeable
+/----start.js // punto de entrada para levantar la app en el puerto configurado
+```
 
+## Decisiones sobre la API
 
+Como no estaba bien definido cómo debía ser el precio dentro de un item con la forma:
+```
+price: {
+   amount,
+   decimals,
+   currency,
+}
+```
+definí que amount devuelva la parte entera del precio, decimals la parte decimal, y currency el símbolo de la moneda en la que está definido el precio. Para esto se consulta dinámicamente a la api de currencies cada vez que se quiere obtener un item o un listado de items.
 
+Luego, para construir el array de categorías al listar `/api/items?q=:query` la información se saca del filtro de categorías aplicado, si es que existe. En caso de que no exista se construye en base a los filtros dispinibles, buscando cuál tiene mayor cantidad de resultados.
+
+También decidí enviar ya sanitizados los textos HTML desde el servidor
 
 Licencia
 ----
@@ -77,3 +102,4 @@ MIT
    [supertest]: <https://www.npmjs.com/package/supertest>
    [axios]: <https://www.npmjs.com/package/axios>
    [nodemon]: <https://www.npmjs.com/package/nodemon>
+   [sanitize-html]: <https://www.npmjs.com/package/sanitize-html>
