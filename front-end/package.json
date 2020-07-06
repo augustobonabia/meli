@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open ",
-    "build": "webpack --mode production && ncp public/index.html dist/index.html",
+    "build": "webpack --mode production && ncp public dist",
     "lint": "eslint .",
     "test:once": "jest",
     "test": "jest --watch",

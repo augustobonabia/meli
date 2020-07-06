@@ -8,7 +8,7 @@ function Item(props) {
 
   const renderFreeShipping = (hasFreeShipping) => {
     if (hasFreeShipping) {
-      return <img className="free-shipping" alt="¡Envío gratis!" src="../shipping.png" />;
+      return <img className="free-shipping" alt="¡Envío gratis!" src="./shipping.png" />;
     }
 
     return null;

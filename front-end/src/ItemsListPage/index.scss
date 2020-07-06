@@ -4,12 +4,13 @@
 ul.items-list {
   @include page;
   flex-direction: column;
-  min-height: 40vh;
 
   span.no-results {
+    min-height: 40vh;
     padding: $medium-space;
     color: $remarked-text-color;
     font-size: $list-item-title-font-size;
+    font-weight: bold;
   }
 
   li.item-container, li.item-container > a {

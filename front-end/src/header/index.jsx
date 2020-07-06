@@ -9,7 +9,7 @@ function Header() {
       <div className="page-section-container">
         <div className="logo-container">
           <Link to="/">
-            <img className="logo" alt="logo" src="../logo.png" />
+            <img className="logo" alt="logo" src="./logo.png" />
           </Link>
         </div>
         <HeaderSearchBar />
