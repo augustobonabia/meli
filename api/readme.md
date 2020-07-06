@@ -41,6 +41,7 @@ $ npm run lint:fix
 |       +-- app.js // Archivo principal de la aplicación, donde se configuran todos los middlewares y routes
 |       +-- items.router.js // El único router que existe, con los endpoints '/items' y 'items/:id'
 |       +-- utils // Contiene todos archivos utils con funciones para mantener el código flexible, desacoplado y testeable
+        +-- middlewares.js  // Contiene todos los middlewares custom (handler de error, custom 404, setAuthor)
 /----start.js // punto de entrada para levantar la app en el puerto configurado
 ```
 
