@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import appSettings from '../appSettings';
+import appSettings from '../app-settings';
 
 const baseURL = appSettings.apiBaseUrl;
 

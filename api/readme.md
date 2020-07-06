@@ -2,27 +2,6 @@
 
 Servidor desarrollado para el [Test Práctico - Frontend](https://www.dropbox.com/sh/nbq7zvtqd2gb9ab/AABIy7kFj4BvLeNfbLib_Jcya?dl=0&preview=Front-End+Test+Pr%C3%A1ctico.pdf)
 
-## Instalación y requerimientos
-
-* Requiere [Node.js] >=12.18.1
-* Requiere [npm] >=6.14.5
-* Requiere [Phyton] >= 3.5
-##### Dependencias
-
-* [express] - Fast, unopinionated, minimalist web framework for Node.js.
-* [bunyan] - A simple and fast JSON logging library for node.js services.
-
-##### Dependencias de desarrollo
-* [eslint] - Find and fix problems in your JavaScript code.
-* [eslint-config-airbnb-base] - Provides Airbnb's base JS .eslintrc (without React plugins) as an extensible shared config.
-* [eslint-plugin-import] - Intends to support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names.
-* [jest] - A delightful JavaScript Testing Framework with a focus on simplicity.
-* [eslint-plugin-jest] - A plugin that integrates jest to eslint.
-* [supertest] - Provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
-* [axios] - Promise based HTTP client for the browser and node.js.
-* [nodemon] - Automatically restarts the node application when file changes in the directory are detected.
-* [sanitize-html] - provides a simple HTML sanitizer with a clear API.
-
 ##### Instalación
 ```
 $ npm install
@@ -34,7 +13,7 @@ En el archivo `environment.js` se pueden configurar todas las variables de entor
 ##### Producción
 Para levantar la app en modo productivo:
 ```
-$ npm serve
+$ npm run serve
 ```
 ##### Desarrollo
 Para levantar la app en modo desarrollo:
@@ -75,31 +54,13 @@ price: {
    currency,
 }
 ```
-definí que amount devuelva la parte entera del precio, decimals la parte decimal, y currency el símbolo de la moneda en la que está definido el precio. Para esto se consulta dinámicamente a la api de currencies cada vez que se quiere obtener un item o un listado de items.
+Definí que amount devuelva la parte entera del precio, decimals la parte decimal (los centavos), y currency el símbolo de la moneda en la que está definido el precio. Para realizar esto último se consume dinámicamente el endpoint `sites/MLA?attributes=currencies` cada vez que se quiere obtener un item o un listado de items.
 
 Luego, para construir el array de categorías al listar `/api/items?q=:query` la información se saca del filtro de categorías aplicado, si es que existe. En caso de que no exista se construye en base a los filtros dispinibles, buscando cuál tiene mayor cantidad de resultados.
 
-También decidí enviar ya sanitizados los textos HTML desde el servidor
+También decidí enviar ya sanitizados los textos HTML desde el servidor.
 
 Licencia
 ----
 
 MIT
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-   [Phyton]: <https://www.python.org/>
-   [Node.js]: <https://nodejs.org/en/>
-   [npm]: <https://www.npmjs.com/>
-   
-   [express]: <https://expressjs.com/>
-   [eslint]: <https://eslint.org/>
-   [bunyan]: <https://github.com/trentm/node-bunyan#log-method-api>
-   [eslint-config-airbnb-base]: <https://www.npmjs.com/package/eslint-config-airbnb-base>
-   [eslint-plugin-import]: <https://www.npmjs.com/package/eslint-plugin-import>
-   [eslint-plugin-jest]: <https://www.npmjs.com/package/eslint-plugin-jest>
-   [jest]: <https://jestjs.io/en/>
-   [supertest]: <https://www.npmjs.com/package/supertest>
-   [axios]: <https://www.npmjs.com/package/axios>
-   [nodemon]: <https://www.npmjs.com/package/nodemon>
-   [sanitize-html]: <https://www.npmjs.com/package/sanitize-html>
