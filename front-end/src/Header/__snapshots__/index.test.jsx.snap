@@ -17,7 +17,7 @@ exports[`El header se renderiza correctamente 1`] = `
         <img
           alt="logo"
           className="logo"
-          src="../logo.png"
+          src="./logo.png"
         />
       </a>
     </div>

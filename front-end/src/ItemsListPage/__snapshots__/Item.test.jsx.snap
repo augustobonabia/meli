@@ -52,7 +52,7 @@ exports[`Un item del listado de búsqueda se renderiza correctamente 1`] = `
             <img
               alt="¡Envío gratis!"
               className="free-shipping"
-              src="../shipping.png"
+              src="./shipping.png"
             />
           </div>
           <h1
