@@ -1,7 +1,7 @@
 let settings;
 
 const devSettings = {
-  enableCORS: true,
+  enableCORS: false,
   resultsLimit: 4,
   baseUrl: '/api',
   author: {

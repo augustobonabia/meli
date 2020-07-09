@@ -1,7 +1,7 @@
 import Axios from 'axios';
-import appSettings from '../app-settings';
 
-const baseURL = appSettings.apiBaseUrl;
+// eslint-disable-next-line no-undef
+const baseURL = API_BASE_URL;
 
 async function get(path) {
   const response = await Axios.get(path, { baseURL });

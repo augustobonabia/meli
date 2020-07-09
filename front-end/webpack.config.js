@@ -55,7 +55,13 @@ module.exports = (env, argv) => {
           '/api': 'http://localhost:3000',
         },
       },
-      plugins: [new webpack.HotModuleReplacementPlugin()],
+      plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+          // eslint-disable-next-line quote-props
+          'API_BASE_URL': JSON.stringify('http://localhost:3001/api/'),
+        }),
+      ],
     };
   }
 
@@ -71,6 +77,12 @@ module.exports = (env, argv) => {
           },
         })],
       },
+      plugins: [
+        new webpack.DefinePlugin({
+          // eslint-disable-next-line quote-props
+          'API_BASE_URL': JSON.stringify('http://localhost:3000/api/'),
+        }),
+      ],
     };
   }
 

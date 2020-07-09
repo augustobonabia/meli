@@ -55,7 +55,7 @@ $ npm install
 ```
 
 ## Uso
-En el archivo `app-settings.js` se puede configurar la url del backend.
+La url del backend, única variable de entorno se puede configurar en el archivo webpack.conf.js, dentro del plugin de webpack *DefinePlugin*.
 
 ##### Producción
 Para compilar la app en modo productivo:
