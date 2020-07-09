@@ -1,9 +1,9 @@
 const log = require('../../logger');
 
+const requestUtils = {};
+
 /** @returns true si el parámetro es un objeto */
-function isObject(o) {
-  return typeof o === 'object';
-}
+const isObject = (o) => typeof o === 'object';
 
 /**
  * Permite enviar una respuesta HTTP=200.
@@ -11,7 +11,7 @@ function isObject(o) {
  * @param res Objeto response de express.
  * @param body Contenido de la respuesta al que se le agrega la firma si corresponde.
  */
-function sendOk(res, body) {
+requestUtils.sendOk = (res, body) => {
   let response = body;
 
   if (!isObject(body)) {
@@ -23,7 +23,7 @@ function sendOk(res, body) {
   }
 
   res.send(response);
-}
+};
 
 /**
  * Wrapper para manejar un request.
@@ -35,7 +35,7 @@ function sendOk(res, body) {
  * @param next Función de express para invocar al siguiente middleware.
  * @param requestHandler Función que maneja los request de un endponint en particular.
  */
-async function requestWrapper(req, res, next, requestHandler) {
+requestUtils.requestWrapper = async (req, res, next, requestHandler) => {
   try {
     const reqLogObj = {
       method: req.method,
@@ -45,15 +45,12 @@ async function requestWrapper(req, res, next, requestHandler) {
     log.info(reqLogObj, 'Request received');
 
     const body = await requestHandler(req);
-    module.exports.sendOk(res, body);
+    requestUtils.sendOk(res, body);
 
     log.info(reqLogObj, 'Response OK');
   } catch (e) {
     next(e);
   }
-}
-
-module.exports = {
-  sendOk,
-  requestWrapper,
 };
+
+module.exports = requestUtils;

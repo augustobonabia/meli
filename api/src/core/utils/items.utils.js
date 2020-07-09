@@ -1,7 +1,9 @@
 const sanitizeHtml = require('sanitize-html');
 const sourceApiClient = require('../api-client');
 
-function buildItemPrice(price, currencyId, currencies) {
+const itemsUtils = {};
+
+itemsUtils.buildItemPrice = (price, currencyId, currencies) => {
   if (price === null) {
     return null;
   }
@@ -16,9 +18,9 @@ function buildItemPrice(price, currencyId, currencies) {
     amount,
     decimals: Math.round(unroundedPriceDecimals),
   };
-}
+};
 
-function buildGetItemResponsePicture(pictures) {
+itemsUtils.buildGetItemResponsePicture = (pictures) => {
   const firstPictureOrUndefined = pictures.find((p) => p);
 
   if (!firstPictureOrUndefined) {
@@ -26,7 +28,7 @@ function buildGetItemResponsePicture(pictures) {
   }
 
   return firstPictureOrUndefined.secure_url || firstPictureOrUndefined.url;
-}
+};
 
 /**
  * Construye el array de items del listado de búsqueda.
@@ -34,39 +36,35 @@ function buildGetItemResponsePicture(pictures) {
  * @param currencies Monedas disponibles.
  * @returns Array de items.
  */
-function buildSearchResponseItems(sourceResults, currencies) {
-  return sourceResults
-    .map((sourceResult) => ({
-      id: sourceResult.id,
-      title: sanitizeHtml(sourceResult.title),
-      price: module.exports.buildItemPrice(
-        sourceResult.price,
-        sourceResult.currency_id,
-        currencies,
-      ),
-      picture: sourceResult.thumbnail,
-      condition: sourceResult.condition,
-      free_shipping: sourceResult.shipping.free_shipping,
-      location: (sourceResult.address && sourceResult.address.state_name) || null,
-    }));
-}
-
-function buildGetItemResponse(sourceItem, itemDescription, currencies) {
-  return {
-    id: sourceItem.id,
-    title: sanitizeHtml(sourceItem.title),
-    price: module.exports.buildItemPrice(
-      sourceItem.price,
-      sourceItem.currency_id,
+itemsUtils.buildSearchResponseItems = (sourceResults, currencies) => sourceResults
+  .map((sourceResult) => ({
+    id: sourceResult.id,
+    title: sanitizeHtml(sourceResult.title),
+    price: itemsUtils.buildItemPrice(
+      sourceResult.price,
+      sourceResult.currency_id,
       currencies,
     ),
-    picture: buildGetItemResponsePicture(sourceItem.pictures),
-    condition: sourceItem.condition,
-    free_shipping: sourceItem.shipping.free_shipping,
-    sold_quantity: sourceItem.sold_quantity,
-    description: sanitizeHtml(itemDescription),
-  };
-}
+    picture: sourceResult.thumbnail,
+    condition: sourceResult.condition,
+    free_shipping: sourceResult.shipping.free_shipping,
+    location: (sourceResult.address && sourceResult.address.state_name) || null,
+  }));
+
+itemsUtils.buildGetItemResponse = (sourceItem, itemDescription, currencies) => ({
+  id: sourceItem.id,
+  title: sanitizeHtml(sourceItem.title),
+  price: itemsUtils.buildItemPrice(
+    sourceItem.price,
+    sourceItem.currency_id,
+    currencies,
+  ),
+  picture: itemsUtils.buildGetItemResponsePicture(sourceItem.pictures),
+  condition: sourceItem.condition,
+  free_shipping: sourceItem.shipping.free_shipping,
+  sold_quantity: sourceItem.sold_quantity,
+  description: sanitizeHtml(itemDescription),
+});
 
 /**
  * @async Construye el path de categorías de la categoría que más resultados obtuvo del listado
@@ -76,7 +74,7 @@ function buildGetItemResponse(sourceItem, itemDescription, currencies) {
  *          con la categoría que más resultados obtuvo, donde el primer elemento es la categría
  *          raíz y el último elemento es la categoría que más resultados obtuvo.
  */
-async function buildSearchResponseCategories(searchResults) {
+itemsUtils.buildSearchResponseCategories = async (searchResults) => {
   // Si no hay resultados en la búsqueda tampoco hay un path de categorías
   if (!searchResults.results.length) {
     return [];
@@ -106,11 +104,6 @@ async function buildSearchResponseCategories(searchResults) {
   }
 
   return categoryPath.map((cat) => cat.name);
-}
-
-module.exports = {
-  buildSearchResponseItems,
-  buildSearchResponseCategories,
-  buildItemPrice,
-  buildGetItemResponse,
 };
+
+module.exports = itemsUtils;
