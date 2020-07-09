@@ -1,16 +1,24 @@
-import Axios from 'axios';
+import axios from 'axios';
 
 // eslint-disable-next-line no-undef
 const baseURL = API_BASE_URL;
 
-async function get(path) {
-  const response = await Axios.get(path, { baseURL });
+function getCancelTokenSource() {
+  return axios.CancelToken.source();
+}
+
+function requestCleaner(source) {
+  return () => source.cancel('Request cancelado por el usuario');
+}
+
+async function get(path, source) {
+  const response = await axios.get(path, { baseURL, cancelToken: source.token });
 
   return response.data;
 }
 
-async function searchItems(searchTerm) {
-  const results = await get(`items?q=${searchTerm}`);
+async function searchItems(searchTerm, source) {
+  const results = await get(`items?q=${searchTerm}`, source);
 
   return {
     author: results.author,
@@ -19,8 +27,8 @@ async function searchItems(searchTerm) {
   };
 }
 
-async function getItem(itemId) {
-  const response = await get(`items/${itemId}`);
+async function getItem(itemId, source) {
+  const response = await get(`items/${itemId}`, source);
 
   return {
     item: response.item,
@@ -28,4 +36,9 @@ async function getItem(itemId) {
   };
 }
 
-export { searchItems, getItem };
+export {
+  searchItems,
+  getItem,
+  getCancelTokenSource,
+  requestCleaner,
+};

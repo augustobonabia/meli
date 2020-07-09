@@ -3,10 +3,11 @@ import useQuery from '../hooks/useQuery';
 import appRoutes from '../core/app-routes';
 import Breadcrumb from '../shared-componets/Breadcrumb';
 import Item from './Item';
-import { searchItems } from '../core/api-utils';
+import { searchItems, getCancelTokenSource, requestCleaner } from '../core/api-utils';
 import './index.scss';
 
 function ItemsListPage() {
+  const source = getCancelTokenSource();
   const query = useQuery();
   const searchTerm = query.get(appRoutes.itemsList.params.search);
   const [listResults, setListResults] = useState({
@@ -16,7 +17,7 @@ function ItemsListPage() {
   });
 
   const updateResults = async () => {
-    const results = await searchItems(searchTerm);
+    const results = await searchItems(searchTerm, source);
     setListResults({
       categories: results.categories,
       items: results.items,
@@ -24,7 +25,11 @@ function ItemsListPage() {
     });
   };
 
-  useEffect(() => { updateResults(searchTerm); }, [searchTerm]);
+  useEffect(() => {
+    updateResults(searchTerm);
+
+    return requestCleaner(source);
+  }, [searchTerm]);
 
   const rendeResults = () => {
     // No renderiza los resultados hasta que no estén actualizados

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getItem } from '../core/api-utils';
+import { getItem, getCancelTokenSource, requestCleaner } from '../core/api-utils';
 import Breadcrumb from '../shared-componets/Breadcrumb';
 import Item from './Item';
 
 function ItemPage() {
+  const source = getCancelTokenSource();
   const { id } = useParams();
 
   const [state, setState] = useState({
@@ -28,7 +29,11 @@ function ItemPage() {
     return null;
   };
 
-  useEffect(() => { updateItem(); }, []);
+  useEffect(() => {
+    updateItem();
+
+    return requestCleaner(source);
+  }, []);
 
   return (
     <>
