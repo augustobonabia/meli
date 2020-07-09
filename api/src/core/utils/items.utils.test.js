@@ -52,6 +52,17 @@ describe(`Listado de búsqueda - items - ${itemsUtils.buildItemPrice.name}`, () 
     expect(itemPrice.decimals).toBe(90);
   });
 
+  test('no debe fallar si no se recibe un precio', () => {
+    const result = {
+      price: null,
+      currency_id: null,
+    };
+
+    const itemPrice = itemsUtils.buildItemPrice(result.price, result.currency_id, currencies);
+
+    expect(itemPrice).toBeNull();
+  });
+
   test('genera la cantidad correcta de monto y "decimales" de un precio con 2 decimales', () => {
     const result = {
       price: 2459.97,

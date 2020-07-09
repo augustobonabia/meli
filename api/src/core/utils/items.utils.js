@@ -2,6 +2,10 @@ const sanitizeHtml = require('sanitize-html');
 const sourceApiClient = require('../api-client');
 
 function buildItemPrice(price, currencyId, currencies) {
+  if (price === null) {
+    return null;
+  }
+
   const amount = Math.trunc(price);
   const unroundedPriceDecimals = (price - amount) * 100;
 
