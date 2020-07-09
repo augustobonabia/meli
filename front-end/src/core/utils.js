@@ -14,7 +14,7 @@ function sliceByUntilEnd(str, sliceBy) {
 
     const resultantString = str.slice(0, str.length - sliceBy);
 
-    result = result.concat(module.exports.sliceByUntilEnd(resultantString, sliceBy));
+    result = result.concat(sliceByUntilEnd(resultantString, sliceBy));
   } else if (str.length) {
     result.push(str);
   }
@@ -47,7 +47,7 @@ function formatPriceAmount(amount) {
   return concatAll(amountSubStrings, '.');
 }
 
-module.exports = {
+export {
   sliceByUntilEnd,
   concatAll,
   formatPriceAmount,

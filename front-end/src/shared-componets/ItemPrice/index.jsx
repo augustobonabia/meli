@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import './index.scss';
 import { formatPriceAmount } from '../../core/utils';
 
-function Item(props) {
+function ItemPrice(props) {
   const { price } = props;
+
+  if (!price) {
+    return null;
+  }
+
   const formattedAmount = formatPriceAmount(price.amount);
 
   const renderCents = (decimals) => {
@@ -30,9 +35,13 @@ const pricePropType = PropTypes.shape({
   currency: PropTypes.string.isRequired,
 });
 
-Item.propTypes = {
-  price: pricePropType.isRequired,
+ItemPrice.propTypes = {
+  price: pricePropType,
 };
 
-export default Item;
+ItemPrice.defaultProps = {
+  price: null,
+};
+
+export default ItemPrice;
 export { pricePropType };

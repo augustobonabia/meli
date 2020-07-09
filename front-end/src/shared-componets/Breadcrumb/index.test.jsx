@@ -1,6 +1,6 @@
 import React from 'react';
-import Breadcrumb from './index';
 import renderer from 'react-test-renderer';
+import Breadcrumb from './index';
 
 it('El breadcrumb se renderiza correctamente', () => {
   const categories = [

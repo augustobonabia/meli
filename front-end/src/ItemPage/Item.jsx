@@ -42,7 +42,7 @@ Item.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    price: pricePropType.isRequired,
+    price: pricePropType,
     picture: PropTypes.string.isRequired,
     condition: PropTypes.string.isRequired,
     free_shipping: PropTypes.bool.isRequired,
