@@ -14,7 +14,8 @@ function ItemPage() {
   });
 
   const updateItem = async () => {
-    const response = await getItem(id);
+    const response = await getItem(id, source);
+
     setState({
       categories: response.categories,
       item: response.item,
