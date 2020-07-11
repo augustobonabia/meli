@@ -15,6 +15,11 @@ $img-width: 680px;
         
     @media(min-width: 1200px) {
       grid-template-columns: 5fr 2fr;
+      
+      aside {
+        margin-top: 0;
+        text-align: left;
+      }
     }
 
     article {
@@ -41,6 +46,8 @@ $img-width: 680px;
     }
   
     aside {
+      margin-top: $small-space;
+      text-align: center;
       align-self: start;
       color: $remarked-text-color;
   
@@ -57,6 +64,7 @@ $img-width: 680px;
       }
   
       span.price {
+        display: block;
         font-size: $item-detail-price-font-size;
   
         span.currency {
@@ -66,6 +74,7 @@ $img-width: 680px;
   
       button.buy {
         width: 100%;
+        max-width: 500px;
         font-size: $item-detail-title-font-size;
         border-radius: $border-radius;
         margin-top: $medium-space;

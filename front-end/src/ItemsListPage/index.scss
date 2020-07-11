@@ -32,7 +32,8 @@ ul.items-list {
       justify-content: center;
       margin: 0 $small-space;
       padding: $small-space 0;
-
+      color: $remarked-text-color;
+      
       @media(min-width: 768px) {
         justify-content: left;
         flex-wrap: nowrap;
