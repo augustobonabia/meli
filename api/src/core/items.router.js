@@ -12,8 +12,10 @@ const router = express.Router();
 // Response builders
 
 async function buildItemsSearchResponse(req) {
-  const searchResults = await sourceApiClient.getItems(req.query.q);
-  const currencies = await sourceApiClient.getCurrencies();
+  const [searchResults, currencies] = await await Promise.all([
+    sourceApiClient.getItems(req.query.q),
+    sourceApiClient.getCurrencies(),
+  ]);
 
   return {
     categories: await itemsUtils.buildSearchResponseCategories(searchResults),
@@ -23,10 +25,13 @@ async function buildItemsSearchResponse(req) {
 
 async function buildItemResponse(req) {
   const itemId = req.params.id;
-  const sourceItem = await sourceApiClient.getItem(itemId);
+
+  const [sourceItem, itemDescription, currencies] = await Promise.all([
+    sourceApiClient.getItem(itemId),
+    sourceApiClient.getItemDescription(itemId),
+    sourceApiClient.getCurrencies(),
+  ]);
   const categoryPath = await sourceApiClient.getCategoryPath(sourceItem.category_id);
-  const itemDescription = await sourceApiClient.getItemDescription(itemId);
-  const currencies = await sourceApiClient.getCurrencies();
 
   return {
     item: itemsUtils.buildGetItemResponse(sourceItem, itemDescription, currencies),
